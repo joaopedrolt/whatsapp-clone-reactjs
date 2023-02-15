@@ -1,9 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './components/App'
+import AppContainer from './components/AppContainer/index'
+import WindowApp from './components/WindowApp/index'
+import './index.scss'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('app')).render(
   <React.StrictMode>
-    <App />
+    <AppContainer>
+      <WindowApp />
+    </AppContainer>
   </React.StrictMode>,
 )
