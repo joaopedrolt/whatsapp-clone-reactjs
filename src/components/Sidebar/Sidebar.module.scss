@@ -5,40 +5,7 @@
     background-color: $bg-sidebar;
     flex: 1 1 30%;
     max-width: 30%;
-
-    header {
-        height: 59px;
-        background-color: $bg-header;
-        padding: 10px 16px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .avatar {
-            height: 40px;
-            width: 40px;
-            border-radius: 50%;
-        }
-
-        .icons {
-            .icon {
-                cursor: pointer;
-                padding: 9px 8px 5px 8px;
-                display: inline-block;
-                margin-left: 10px;
-                border-radius: 50%;
-
-                @media (max-width: $navbar-icons-spacing) {
-                    margin: 0 6px 0 8px;
-                }
-
-                &:hover {
-                    background-color: $bg-header-icon-click;
-                }
-            }
-        }
-    }
-
+    
     @media (max-width: $flex-proportion-large) {
         flex: 1 1 40%;
         max-width: 40%;
