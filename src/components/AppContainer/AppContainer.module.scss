@@ -4,7 +4,8 @@
 .app-container {
     background-color: $bg-deep-layer;
     height: 100%;
-
+    overflow-x: auto !important;
+  
     @media (min-width: $large-desktop-display) {
         &::after {
             content: ('');
