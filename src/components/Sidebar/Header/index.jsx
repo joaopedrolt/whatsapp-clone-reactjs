@@ -1,8 +1,8 @@
 import styles from './Header.module.scss'
 
-import StatusIcon from '../../../assets/icons/status-button.jsx';
-import ChatIcon from '../../../assets/icons/chat-button.jsx';
-import MenuIcon from '../../../assets/icons/menu-button.jsx';
+import StatusIcon from 'src/assets/icons/status-icon.jsx';
+import ChatIcon from 'src/assets/icons/chat-icon.jsx';
+import MenuIcon from 'src/assets/icons/menu-icon.jsx';
 
 function Header() {
     return (

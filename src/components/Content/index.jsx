@@ -1,9 +1,11 @@
 import styles from './Content.module.scss'
 
+import IntroContentImage from 'src/assets/images/intro-content-image.jsx'
+
 function Content() {
   return (
     <div className={styles.content}>
-      content
+      <IntroContentImage />
     </div>
   )
 }

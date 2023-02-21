@@ -1,14 +1,33 @@
 $bg-deep-layer: #dfdfdd;
 $bg-stripe: #00a884;
 
+$bg-appwindow: #f7f8fa;
+$bx-appwindow: 0 6px 18px rgba(11,20,26,.05);
+
 $bg-header: #f0f2f5;
 $bg-header-icon-click: rgba(11,20,26,0.1);
 $bg-sidebar: #fff;
+
 $sidebar-input-color: #3b4a54;
 $search-container-bottom-color: #e9edef;
-$filter-icon-color: #8696a0;
+$filter-close-icons-color: #8696a0;
 $search-icon-color: #54656f;
 $arrow-search-icon-color: #00a884;
+$bx-search: 0 2px 3px rgba(11, 20, 26, 0.08);
 
-$scroll-track: #eae6df;
-$scroll-thumb: #bdbcb7;
+$chatbox-title-color: #111b21;
+$chatbox-datetime-color: #667781;
+$chatbox-message-color: #667781;
+$bg-unread-counter: #25d366;
+$unread-counter-color: #fff;
+$arrow-down-icon-color: #8696a0;
+$chatbox-datetime-active-color: #1fa855;
+$chatbox-message-active-color: #3b4a54;
+$bg-chatbox-hover: #f5f6f6;
+$border-chatbox: 1px solid #e9edef;
+
+$scroll-chatlist-track: #fff;
+$scroll-chatlist-thumb: #ced0d1;
+
+$scroll-screen-track: #eae6df;
+$scroll-screen-thumb: #bdbcb7;

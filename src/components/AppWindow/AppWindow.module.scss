@@ -1,13 +1,14 @@
 @import 'src/styles/breakpoints';
+@import 'src/styles/theme';
 
 .app-window{
     position: relative;
-    background-color: #f7f8fa;
+    background-color: $bg-appwindow;
     z-index: 2;
     height: 100%;
     width: 100%;
     min-width: 748px;
-    box-shadow: 0 6px 18px rgba(11,20,26,.05);
+    box-shadow: $bx-appwindow;
     display: flex;
 
     @media (min-width: $large-desktop-display) {
