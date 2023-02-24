@@ -1,14 +1,13 @@
 @import 'src/styles/breakpoints';
 @import 'src/styles/theme';
 
-header {
+.header-sidebar {
     height: 59px;
     background-color: $bg-header;
     padding: 10px 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 
     .avatar {
         height: 40px;

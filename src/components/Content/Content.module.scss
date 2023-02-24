@@ -1,7 +1,7 @@
-.content{
+@import 'src/styles/theme';
+
+.content {
     flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f0f2f5;
+    border-left: $border-content-side;
+    overflow: hidden;
 }

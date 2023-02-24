@@ -1,11 +1,9 @@
 import styles from './Content.module.scss'
 
-import IntroContentImage from 'src/assets/images/intro-content-image.jsx'
-
-function Content() {
+function Content({children}) {
   return (
     <div className={styles.content}>
-      <IntroContentImage />
+      {children}
     </div>
   )
 }

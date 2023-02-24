@@ -33,6 +33,10 @@
                 position: relative;
                 bottom: 1px;
             }
+
+            &:placeholder-shown {
+                text-overflow: ellipsis;
+            }
         }
 
         .search-button {

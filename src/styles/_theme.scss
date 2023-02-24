@@ -1,12 +1,20 @@
+/* AppContainer */
+
 $bg-deep-layer: #dfdfdd;
 $bg-stripe: #00a884;
 
+/* AppWindow */
+
 $bg-appwindow: #f7f8fa;
-$bx-appwindow: 0 6px 18px rgba(11,20,26,.05);
+$bx-appwindow: 0 6px 18px rgba(11, 20, 26, .05);
+
+/* Sidebar Side - Header */
 
 $bg-header: #f0f2f5;
-$bg-header-icon-click: rgba(11,20,26,0.1);
+$bg-header-icon-click: rgba(11, 20, 26, 0.1);
 $bg-sidebar: #fff;
+
+/* Sidebar Side - Search */
 
 $sidebar-input-color: #3b4a54;
 $search-container-bottom-color: #e9edef;
@@ -14,6 +22,8 @@ $filter-close-icons-color: #8696a0;
 $search-icon-color: #54656f;
 $arrow-search-icon-color: #00a884;
 $bx-search: 0 2px 3px rgba(11, 20, 26, 0.08);
+
+/* Sidebar Side - ChatBox */
 
 $chatbox-title-color: #111b21;
 $chatbox-datetime-color: #667781;
@@ -26,8 +36,55 @@ $chatbox-message-active-color: #3b4a54;
 $bg-chatbox-hover: #f5f6f6;
 $border-chatbox: 1px solid #e9edef;
 
+/* Content Side */
+
+$border-content-side: 1px solid #e9edef;
+
+/* Content Side - Intro */
+
+$bg-content-intro: #f0f2f5;
+$intro-title-color: #41525d;
+$intro-text-color: #667781;
+$border-intro-filler: 6px solid #25d366;
+
+/* Content Side - Chat */
+
+$bg-chat: #efeae2;
+
+/* Content Side - Chat Header */
+
+$border-chat-header: 1px solid #d1d7db;
+$user-name-color: #111b21;
+$chat-header-icons-color: #54656f;
+
+/* Content Side - Chat Body */
+
+$bg-linear-gradient: linear-gradient(rgba(235, 231, 219, 0.5), rgba(235, 231, 219, 0.5));
+$message-color: #111b21;
+$time-color: #667781;
+$bg-message-box-out: #d9fdd3;
+$bg-message-box-in: #fff;
+
+/* Content Side - Chat Footer */
+
+$bg-chat-inputbar: #f0f2f5;
+$icons-inputbar-color: #54656f;
+$send-inputbar-icon-color: #64737d;
+$bg-input: #fff;
+$border-input: 1px solid #fff;
+$input-color: #3b4a54;
+$input-placeholder-color: #667781;
+
+/* Content Side - ChatBody Scroll */
+
+$scroll-chatbody-thumb: #ced0d1;
+
+/* Sidebar Side - Scroll */
+
 $scroll-chatlist-track: #fff;
 $scroll-chatlist-thumb: #ced0d1;
+
+/* AppWindown - Scroll */
 
 $scroll-screen-track: #eae6df;
 $scroll-screen-thumb: #bdbcb7;
