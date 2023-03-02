@@ -123,6 +123,10 @@
             }
         }
 
+        &.active{
+            background-color: $bg-chatbox-hover;
+        }
+
         &:hover {
             background-color: $bg-chatbox-hover;
 

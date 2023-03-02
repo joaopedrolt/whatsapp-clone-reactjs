@@ -1,6 +1,6 @@
-export default function ({ className }) {
+export default function ({ className, onClick }) {
     return (
-        <svg viewBox="0 0 24 24" height={26} width={26} preserveAspectRatio="xMidYMid meet" className={className} enableBackground="new 0 0 24 24" xmlSpace="preserve">
+        <svg onClick={onClick} viewBox="0 0 24 24" height={26} width={26} preserveAspectRatio="xMidYMid meet" className={className} enableBackground="new 0 0 24 24" xmlSpace="preserve">
             <path d="M9.153,11.603c0.795,0,1.439-0.879,1.439-1.962S9.948,7.679,9.153,7.679 S7.714,8.558,7.714,
                 9.641S8.358,11.603,9.153,11.603z M5.949,12.965c-0.026-0.307-0.131,5.218,6.063,5.551 c6.066-0.25,6.066-5.551,6.066-5.551C12,
                 14.381,5.949,12.965,5.949,12.965z M17.312,14.073c0,0-0.669,1.959-5.051,1.959 c-3.505,0-5.388-1.164-5.607-1.959C6.654,

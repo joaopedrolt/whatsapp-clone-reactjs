@@ -80,7 +80,7 @@
         cursor: pointer;
     }
 
-    &-active {
+    &.active {
         box-shadow: $bx-search;
 
         .input-container {

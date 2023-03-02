@@ -1,12 +1,13 @@
-import classNames from 'classnames';
 import { useState, useRef } from 'react';
 
 import styles from './Search.module.scss'
 
 import SearchButton from 'src/assets/icons/search-sidebar-icon.jsx';
-import ArrowSearchButton from 'src/assets/icons/arrow-search-icon';
+import ArrowSearchButton from 'src/assets/icons/arrow-back-search-icon.jsx';
 import SearchCloseButton from 'src/assets/icons/search-close-icon.jsx';
 import FilterButton from 'src/assets/icons/filter-icon.jsx';
+
+import classNames from 'classnames';
 
 function Search() {
 
@@ -41,7 +42,7 @@ function Search() {
     }
 
     return (
-        <div className={classNames(styles['search-container'], { [styles['search-container-active']]: inputFocus })}>
+        <div className={classNames(styles['search-container'], { [styles['active']]: inputFocus })}>
             <div className={styles['input-container']}>
                 <SearchButton onClickFunction={HandleSearcButtonClick} className={styles['search-button']} />
                 <ArrowSearchButton onClickFunction={HandleArrowBackClick} className={styles['arrow-search-button']} />

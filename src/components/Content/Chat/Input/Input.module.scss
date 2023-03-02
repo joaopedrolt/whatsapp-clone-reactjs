@@ -1,0 +1,53 @@
+@import 'src/styles/theme';
+
+.input {
+    flex: 1;
+    padding: 11px 12px;
+    margin: 5px 0 5px 2px;
+    max-height: 7.35em;
+    overflow: auto;
+    font-size: 15px;
+    border-radius: 8px;
+    background-color: $bg-input;
+    border: $border-input;
+    color: $input-color;
+    white-space: pre-wrap;
+    word-break: break-word;
+    cursor: text;
+
+    &:empty:before {
+        content: attr(data-placeholder);
+        color: $input-placeholder-color;
+        position: relative;
+        bottom: 1px;
+        left: 4px;
+    }
+
+    &::-webkit-scrollbar {
+        width: 6px !important;
+        height: 6px !important;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $scroll-chatbody-thumb;
+    }
+}
+
+.microphone-button {
+    fill: $icons-inputbar-color;
+    cursor: pointer;
+}
+
+.send-button {
+    fill: $send-inputbar-icon-color;
+    cursor: pointer;
+}
+
+.microphone-button,
+.send-button {
+    margin-top: 1px;
+}

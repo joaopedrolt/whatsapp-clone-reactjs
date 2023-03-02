@@ -1,0 +1,26 @@
+@import 'src/styles/theme';
+
+.EmojiPickerReact {
+    background-color: $bg-chat-inputbar !important;
+    transition: all .3s ease !important;
+    overflow-y: hidden !important;
+
+    .epr-emoji-category-label {
+        background-color: transparent !important;
+    }
+
+    .epr-body {
+        &::-webkit-scrollbar {
+            width: 6px !important;
+            height: 6px !important;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $scroll-chatbody-thumb;
+        }
+    }
+}

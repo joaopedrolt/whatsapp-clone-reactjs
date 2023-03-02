@@ -1,6 +1,6 @@
 export default function ({ className }) {
     return (
-        <svg viewBox="0 0 24 24" height={24} width={24} preserveAspectRatio="xMidYMid meet" className={className} enableBackground="new 0 0 24 24" xmlSpace="preserve">
+        <svg viewBox="0 0 24 24" height={26} width={26} preserveAspectRatio="xMidYMid meet" className={className} enableBackground="new 0 0 24 24" xmlSpace="preserve">
             <path d="M1.816,15.556v0.002c0,1.502,0.584,2.912,1.646,3.972s2.472,1.647,3.974,1.647 c1.501,0,2.91-0.584,3.972-1.645l9.547-9.548c0.769-0.768,
                 1.147-1.767,1.058-2.817c-0.079-0.968-0.548-1.927-1.319-2.698 c-1.594-1.592-4.068-1.711-5.517-0.262l-7.916,7.915c-0.881,0.881-0.792,2.25,0.214,3.261c0.959,0.958,
                 2.423,1.053,3.263,0.215 c0,0,3.817-3.818,5.511-5.512c0.28-0.28,0.267-0.722,0.053-0.936c-0.08-0.08-0.164-0.164-0.244-0.244 c-0.191-0.191-0.567-0.349-0.957,

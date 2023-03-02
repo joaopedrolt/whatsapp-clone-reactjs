@@ -6,7 +6,7 @@
     background-color: $bg-chat;
     display: flex;
     flex-direction: column;
-
+  
     .chat-header {
         height: 59px;
         padding: 10px 16px;
@@ -50,8 +50,7 @@
     }
 
     .chat-body {
-        height: calc(100% - 123px);
-        overflow-y: scroll;
+        overflow-y: auto;
         flex: 1;
         display: flex;
         flex-direction: column-reverse;
@@ -142,11 +141,12 @@
                     }
 
                     @media (max-width: $message-box-padding-adjust) {
-                        padding-left: 30px;
+                        padding-left: 27px;
                         padding-right: 19px;
                     }
                 }
             }
+
         }
 
         &::-webkit-scrollbar {
@@ -164,51 +164,115 @@
     }
 
     .chat-inputbar {
-        height: 64px;
         min-height: 64px;
         background-color: $bg-chat-inputbar;
         display: flex;
         align-items: center;
-        padding: 10px 23.5px 10px 20px;
+        padding: 5px 23.5px 5px 20px;
         gap: 16px;
 
         .clip-button,
         .emoji-button,
-        .microphone-button {
+        .emojipicker-close-button {
             fill: $icons-inputbar-color;
             cursor: pointer;
         }
 
-        .send-button {
-            fill: $send-inputbar-icon-color;
+        .emoji-clip-buttons {
+            transition: width .3s ease;
+            will-change: width;
+            width: 68px;
+
+            .clip-button,
+            .emoji-button,
+            .emojipicker-close-button {
+                display: inline-block;
+                margin-top: 5px;
+            }
+
+            .emoji-button {
+                margin-right: 16px;
+            }
+
+            .emojipicker-close-button {
+                position: absolute;
+                z-index: -1;
+                opacity: 0;
+                visibility: hidden;
+                margin-top: 5.5px;
+                transition: opacity .35s ease-in-out;
+            }
+
+            .clip-button,
+            .emoji-button {
+                transition: transform .3s ease;
+            }
+
+            &.active {
+                width: 122px;
+
+                .emojipicker-close-button {
+                    z-index: 0;
+                    opacity: 1;
+                    visibility: visible;
+                }
+
+                .emoji-button {
+                    fill: #008069;
+                    transform: translateX(45px);
+                }
+
+                .clip-button {
+                    transform: translateX(52px);
+                }
+            }
         }
 
-        .clip-button,
-        .emoji-button {
-            margin-top: 1px;
-        }
-
-        .microphone-button,
-        .send-button {
-            margin-top: 1px;
-        }
-
-        input {
+        .input {
             flex: 1;
             padding: 11px 12px;
             margin: 5px 0 5px 2px;
+            max-height: 7.35em;
+            overflow: auto;
             font-size: 15px;
             border-radius: 8px;
             background-color: $bg-input;
             border: $border-input;
             color: $input-color;
+            white-space: pre-wrap;
+            word-break: break-word;
+            cursor: text;
 
-            &::placeholder {
+            &:empty:before {
+                content: attr(data-placeholder);
                 color: $input-placeholder-color;
                 position: relative;
                 bottom: 1px;
                 left: 4px;
             }
+
+            &::-webkit-scrollbar {
+                width: 6px !important;
+                height: 6px !important;
+            }
+
+            &::-webkit-scrollbar-track {
+                background-color: transparent;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: $scroll-chatbody-thumb;
+            }
+        }
+
+        .send-button {
+            fill: $send-inputbar-icon-color;
+            cursor: pointer;
+        }
+
+        .microphone-button,
+        .send-button {
+            margin-top: 1px;
         }
     }
 }
