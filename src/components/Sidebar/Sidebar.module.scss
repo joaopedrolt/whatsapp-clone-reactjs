@@ -3,6 +3,8 @@
 
 .sidebar {
     background-color: $bg-sidebar;
+    display: flex;
+    flex-direction: column;
     flex: 1 1 30%;
     max-width: 30%;
     min-width: 30%;

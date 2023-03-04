@@ -36,6 +36,13 @@ $chatbox-message-active-color: #3b4a54;
 $bg-chatbox-hover: #f5f6f6;
 $border-chatbox: 1px solid #e9edef;
 
+/* Sidebar Side - NewChat */
+
+$bg-newchat: #fff;
+$bg-newchat-header: #008069;
+$newchat-header-content-color: #fff;
+$newchat-chatlist-heading-color: #008069;
+
 /* Content Side */
 
 $border-content-side: 1px solid #e9edef;
@@ -74,6 +81,7 @@ $bg-input: #fff;
 $border-input: 1px solid #fff;
 $input-color: #3b4a54;
 $input-placeholder-color: #667781;
+$emoji-icon-active-color: #008069;
 
 /* Content Side - ChatBody Scroll */
 

@@ -12,6 +12,17 @@ import classNames from 'classnames';
 function NewChat({ newChatMenu, setNewchatMenuStatus }) {
     const [inputFocus, setInputFocus] = useState(false);
     const [inputValue, setValue] = useState('');
+    const [contacts, setContacts] = useState([
+        {
+            title: 'Paulo',
+            avatar: 'https://pps.whatsapp.net/v/t61.24694-24/119455190_768019937074475_8940386468603441667_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdRVfsTr2Esrr0Im0PFhI0snHUL7maL0HTjPsD-e1b2tOA&oe=64023195'
+        },
+        {
+            title: 'Costa',
+            avatar: 'https://pps.whatsapp.net/v/t61.24694-24/311895978_1215356046080479_6046584892484298882_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdRDof0iaD68kgAJcfe65nAxC62Vyqf_yx6FGJjp_akU1g&oe=640FEBB8'
+        }
+    ]);
+    var results = false;
 
     const ref = useRef(null);
 
@@ -20,7 +31,9 @@ function NewChat({ newChatMenu, setNewchatMenuStatus }) {
     }
 
     const HandeInputFocusOut = () => {
-        setInputFocus(false);
+        if (inputValue.length <= 0) {
+            setInputFocus(false);
+        }
     }
 
     const HandleInputChange = (e) => {
@@ -29,6 +42,7 @@ function NewChat({ newChatMenu, setNewchatMenuStatus }) {
 
     const HandleCloseButtonClick = () => {
         setValue('');
+        ref.current.focus();
     }
 
     const HandleSearcButtonClick = () => {
@@ -37,11 +51,13 @@ function NewChat({ newChatMenu, setNewchatMenuStatus }) {
 
     const HandleArrowBackClick = () => {
         ref.current.blur();
+        setInputFocus(false);
         setValue('');
     }
 
     const HandleBackNewchatMenu = () => {
         setNewchatMenuStatus(false);
+        setValue('');
     }
 
     return (
@@ -60,124 +76,51 @@ function NewChat({ newChatMenu, setNewchatMenuStatus }) {
                 <div className={styles['input-container']}>
                     <SearchButton onClickFunction={HandleSearcButtonClick} className={styles['search-button']} />
                     <ArrowSearchButton onClickFunction={HandleArrowBackClick} className={styles['arrow-search-button']} />
-                    <input ref={ref} onFocus={HandeInputFocus} onBlur={HandeInputFocusOut} value={inputValue} onChange={HandleInputChange} placeholder='Pesquisar ou começar uma nova conversa' />
+                    <input ref={ref} onFocus={HandeInputFocus} onBlur={HandeInputFocusOut} value={inputValue} onChange={HandleInputChange} placeholder='Pesquisar contato' />
                     {inputValue.length > 0 ? <span onClick={HandleCloseButtonClick}><SearchCloseButton className={styles['search-close-icon']} /></span> : <></>}
                 </div>
             </div>
-            <div className={styles['chat-list']}>
+            <div className={styles['contacts-list']}>
                 <div className={styles.heading}>
                     <h1>Contatos no WhatsApp</h1>
                 </div>
-                <div className={styles['chat-box']}>
-                    <div className={styles.image}>
-                        <img src='https://pps.whatsapp.net/v/t61.24694-24/119455190_768019937074475_8940386468603441667_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdRVfsTr2Esrr0Im0PFhI0snHUL7maL0HTjPsD-e1b2tOA&oe=64023195' />
+                {inputValue.length > 0 ? <>
+                    {contacts.map((contact, key) => {
+                        if (contact.title.toLowerCase().includes(inputValue.toLowerCase())) {
+                            results = true;
+                            return (<div key={key} className={styles['contact-box']}>
+                                <div className={styles.image}>
+                                    <img src={contact.avatar} />
+                                </div>
+                                <div className={styles.content}>
+                                    <div className={styles['row']}>
+                                        <h3>{contact.title}</h3>
+                                    </div>
+                                </div>
+                            </div>)
+                        }
+                    })}
+                </> :
+                    <>
+                        {contacts.map((contact, key) => (
+                            <div key={key} className={styles['contact-box']}>
+                                <div className={styles.image}>
+                                    <img src={contact.avatar} />
+                                </div>
+                                <div className={styles.content}>
+                                    <div className={styles['row']}>
+                                        <h3>{contact.title}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </>
+                }
+                {inputValue.length > 0 && !results &&
+                    <div className={styles.notfound}>
+                        <span>Nenhum contato encontrado para '{inputValue}'</span>
                     </div>
-                    <div className={styles.content}>
-                        <div className={styles['row']}>
-                            <h3>Paulo</h3>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles['chat-box']}>
-                    <div className={styles.image}>
-                        <img src='https://pps.whatsapp.net/v/t61.24694-24/119455190_768019937074475_8940386468603441667_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdRVfsTr2Esrr0Im0PFhI0snHUL7maL0HTjPsD-e1b2tOA&oe=64023195' />
-                    </div>
-                    <div className={styles.content}>
-                        <div className={styles['row']}>
-                            <h3>Paulo</h3>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles['chat-box']}>
-                    <div className={styles.image}>
-                        <img src='https://pps.whatsapp.net/v/t61.24694-24/119455190_768019937074475_8940386468603441667_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdRVfsTr2Esrr0Im0PFhI0snHUL7maL0HTjPsD-e1b2tOA&oe=64023195' />
-                    </div>
-                    <div className={styles.content}>
-                        <div className={styles['row']}>
-                            <h3>Paulo</h3>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles['chat-box']}>
-                    <div className={styles.image}>
-                        <img src='https://pps.whatsapp.net/v/t61.24694-24/119455190_768019937074475_8940386468603441667_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdRVfsTr2Esrr0Im0PFhI0snHUL7maL0HTjPsD-e1b2tOA&oe=64023195' />
-                    </div>
-                    <div className={styles.content}>
-                        <div className={styles['row']}>
-                            <h3>Paulo</h3>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles['chat-box']}>
-                    <div className={styles.image}>
-                        <img src='https://pps.whatsapp.net/v/t61.24694-24/119455190_768019937074475_8940386468603441667_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdRVfsTr2Esrr0Im0PFhI0snHUL7maL0HTjPsD-e1b2tOA&oe=64023195' />
-                    </div>
-                    <div className={styles.content}>
-                        <div className={styles['row']}>
-                            <h3>Paulo</h3>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles['chat-box']}>
-                    <div className={styles.image}>
-                        <img src='https://pps.whatsapp.net/v/t61.24694-24/119455190_768019937074475_8940386468603441667_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdRVfsTr2Esrr0Im0PFhI0snHUL7maL0HTjPsD-e1b2tOA&oe=64023195' />
-                    </div>
-                    <div className={styles.content}>
-                        <div className={styles['row']}>
-                            <h3>Paulo</h3>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles['chat-box']}>
-                    <div className={styles.image}>
-                        <img src='https://pps.whatsapp.net/v/t61.24694-24/119455190_768019937074475_8940386468603441667_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdRVfsTr2Esrr0Im0PFhI0snHUL7maL0HTjPsD-e1b2tOA&oe=64023195' />
-                    </div>
-                    <div className={styles.content}>
-                        <div className={styles['row']}>
-                            <h3>Paulo</h3>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles['chat-box']}>
-                    <div className={styles.image}>
-                        <img src='https://pps.whatsapp.net/v/t61.24694-24/119455190_768019937074475_8940386468603441667_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdRVfsTr2Esrr0Im0PFhI0snHUL7maL0HTjPsD-e1b2tOA&oe=64023195' />
-                    </div>
-                    <div className={styles.content}>
-                        <div className={styles['row']}>
-                            <h3>Paulo</h3>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles['chat-box']}>
-                    <div className={styles.image}>
-                        <img src='https://pps.whatsapp.net/v/t61.24694-24/119455190_768019937074475_8940386468603441667_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdRVfsTr2Esrr0Im0PFhI0snHUL7maL0HTjPsD-e1b2tOA&oe=64023195' />
-                    </div>
-                    <div className={styles.content}>
-                        <div className={styles['row']}>
-                            <h3>Paulo</h3>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles['chat-box']}>
-                    <div className={styles.image}>
-                        <img src='https://pps.whatsapp.net/v/t61.24694-24/119455190_768019937074475_8940386468603441667_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdRVfsTr2Esrr0Im0PFhI0snHUL7maL0HTjPsD-e1b2tOA&oe=64023195' />
-                    </div>
-                    <div className={styles.content}>
-                        <div className={styles['row']}>
-                            <h3>Paulo</h3>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles['chat-box']}>
-                    <div className={styles.image}>
-                        <img src='https://pps.whatsapp.net/v/t61.24694-24/119455190_768019937074475_8940386468603441667_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdRVfsTr2Esrr0Im0PFhI0snHUL7maL0HTjPsD-e1b2tOA&oe=64023195' />
-                    </div>
-                    <div className={styles.content}>
-                        <div className={styles['row']}>
-                            <h3>Paulo</h3>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     )
