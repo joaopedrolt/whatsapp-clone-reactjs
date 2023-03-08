@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import styles from './NewChat.module.scss'
 
@@ -7,22 +7,30 @@ import ArrowSearchButton from 'src/assets/icons/arrow-back-search-icon.jsx';
 import SearchCloseButton from 'src/assets/icons/search-close-icon.jsx';
 import SearchButton from 'src/assets/icons/search-sidebar-icon.jsx';
 
+import Api from 'src/api';
+
 import classNames from 'classnames';
 
-function NewChat({ newChatMenu, setNewchatMenuStatus }) {
+function NewChat({ user, newChatMenu, setNewchatMenuStatus }) {
     const [inputFocus, setInputFocus] = useState(false);
     const [inputValue, setValue] = useState('');
-    const [contacts, setContacts] = useState([
-        {
-            title: 'Paulo',
-            avatar: 'https://pps.whatsapp.net/v/t61.24694-24/119455190_768019937074475_8940386468603441667_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdRVfsTr2Esrr0Im0PFhI0snHUL7maL0HTjPsD-e1b2tOA&oe=64023195'
-        },
-        {
-            title: 'Costa',
-            avatar: 'https://pps.whatsapp.net/v/t61.24694-24/311895978_1215356046080479_6046584892484298882_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdRDof0iaD68kgAJcfe65nAxC62Vyqf_yx6FGJjp_akU1g&oe=640FEBB8'
-        }
-    ]);
+    const [contacts, setContacts] = useState([]);
     var results = false;
+
+    useEffect(() => {
+        const getContactList = async () => {
+            if (user !== null) {
+                let results = await Api.getContactList(user.id);
+                setContacts(results);
+            }
+        }
+        getContactList();
+    }, [user])
+
+    const AddNewChat = async (user2) => {
+        await Api.addNewChat(user, user2);
+        setNewchatMenuStatus(false);
+    }
 
     const ref = useRef(null);
 
@@ -103,13 +111,13 @@ function NewChat({ newChatMenu, setNewchatMenuStatus }) {
                 </> :
                     <>
                         {contacts.map((contact, key) => (
-                            <div key={key} className={styles['contact-box']}>
+                            <div onClick={() => {AddNewChat(contact)}} key={key} className={styles['contact-box']}>
                                 <div className={styles.image}>
                                     <img src={contact.avatar} />
                                 </div>
                                 <div className={styles.content}>
                                     <div className={styles['row']}>
-                                        <h3>{contact.title}</h3>
+                                        <h3>{contact.name}</h3>
                                     </div>
                                 </div>
                             </div>

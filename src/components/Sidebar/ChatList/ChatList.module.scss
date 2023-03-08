@@ -164,11 +164,11 @@
     .notfound {
         padding: 50px;
         text-align: center;
-        border-bottom: 1px solid #e9edef;
+        border-bottom: $border-notfound;
 
         span{
             font-size: 14px;
-            color: #8696a0;
+            color: $notfound-text-color;
         }
     }
 

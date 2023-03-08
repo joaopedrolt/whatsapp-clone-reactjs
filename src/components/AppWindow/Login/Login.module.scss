@@ -1,0 +1,97 @@
+@import 'src/styles/theme';
+
+.login {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-window {
+        border-radius: 5%;
+        background-color: $bg-appwindow;
+        width: 350px;
+        height: 405px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+
+        header {
+            background: $bg-login-window;
+            padding: 14px 0;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+
+            .heading {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+
+                span {
+                    color: $header-text-color;
+                    font-size: 14px;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                }
+            }
+        }
+
+        .body {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 20px;
+
+            .signin {
+                text-align: center;
+
+                h3 {
+                    color: black;
+                    font-size: 20px;
+                    font-weight: 300;
+                    margin-bottom: 15px;
+                    text-transform: uppercase;
+                }
+
+                .facebook-container {
+                    display: flex;
+                    align-items: center;
+                    gap: 6.5px;
+                    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+                    padding: 15px 45px;
+                    border-radius: 20px;
+                    cursor: pointer;
+                    transition: all 0.26s ease-in-out;
+                    transform: scale(1.0);
+
+                    svg {
+                        fill: $bg-facebook-icon;
+                        transition: all 0.26s ease-in-out;
+                    }
+
+                    &:hover {
+                        transform: scale(1.05);
+                        background-color: $bg-facebook-icon;
+                        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+                        svg {
+                            fill: $bg-facebook-hover;
+                        }
+                    }
+                }
+            }
+        }
+
+        footer {
+            text-align: center;
+            color: $footer-color;
+            background-color: $bg-footer;
+            padding: 15px 0 20px 0;
+            font-size: 16px;
+            font-weight: 400;
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+        }
+    }
+}

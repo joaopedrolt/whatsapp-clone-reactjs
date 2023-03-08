@@ -1,9 +1,10 @@
 import styles from './AppContainer.module.scss'
+import AppWindow from '../AppWindow/index'
 
-function AppContainer({children}) {
+function AppContainer() {
   return (
     <div className={styles['app-container']}>
-      {children}
+      <AppWindow />
     </div>
   )
 }

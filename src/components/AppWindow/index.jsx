@@ -1,41 +1,42 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { useTransition, animated } from 'react-spring';
 
 import styles from './AppWindow.module.scss'
 
-import Sidebar from 'src/components/Sidebar'
-import Content from 'src/components/Content'
-import Intro from 'src/components/Content/Intro/index.jsx'
-import Chat from 'src/components/Content/Chat/index.jsx'
+import App from './App';
+import Login from './Login';
+import Api from 'src/api';
+
+import classNames from 'classnames';
 
 function AppWindow() {
-  const [activeChat, setActiveChat] = useState({});
-  const [chatList, setChatList] = useState([
-    {
-      chatId: 1, title: 'Paulo', image: 'https://pps.whatsapp.net/v/t61.24694-24/119455190_768019937074475_8940386468603441667_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdRVfsTr2Esrr0Im0PFhI0snHUL7maL0HTjPsD-e1b2tOA&oe=64023195',
-      lastMessage: 'afrochu', lastMessageTime: '17:00', newMessages: { isThere: false, amount: 0 }
-    },
-    {
-      chatId: 2, title: 'Olimpo Feudal', image: 'https://pps.whatsapp.net/v/t61.24694-24/289040170_24908718558773272_8872737444012245312_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdS4PVT3mmiUQbtimwdhMMvxN-drwZ3oG48pWxoAI7uz-Q&oe=63FCFF76',
-      lastMessage: 'Ok', lastMessageTime: 'Quarta-Feira', newMessages: { isThere: true, amount: 5 }
-    }
-  ]);
+  const [logged, setLogingStatus] = useState(true);
   const [user, setUser] = useState({
-    id: 1234,
-    avatar: 'https://pps.whatsapp.net/v/t61.24694-24/321302644_734154424727929_6455365195276254063_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdQ3Cy6kXN59J7XLjCvwvzCyViLs6HV-Djyb32IacdEhpw&oe=6409EFDB',
-    name: 'João Pedro'
+    id: 'ImrI1hELBTYb1dCtdcPhKbe6exE2',
+    name: 'Joao Pedro Lima',
+    avatar: 'https://graph.facebook.com/6036314086458148/picture?height=500&access_token=EAAi8Tv2ZBhi8BAMmvGkkblJcKTNlZAjq6HQkQeDPxyV8uxpZAZCIxEl5wik9I2RdeWbus3M9jd84o3lrJ7gASvuM3ZAnGuUT5AygQlrJnD8CXpJjsrT0n4fBCgzEk3arZB6NZAFnUp06sgPPREacJdHCNbkmE18qurjveUncBF4uo26ZA7BUHt5ZA0AjTfjAYeazVpVZB2AnOKkjGhZBvLu8mFB18BVz1JqUyxBg8J96jGY79qkIsEDu6LCYKzrCMcL7KwZD'
+  });
+  const transition = useTransition(logged, {
+    from: { opacity: 0, scale: 0 },
+    enter: { opacity: 1, scale: 1 }
   });
 
+  const HandleLoginData = async (u, accessToken) => {
+    let newUser = {
+      id: u.uid,
+      name: u.displayName,
+      avatar: u.photoURL + "?height=500&access_token=" + accessToken
+    }
+    Api.addUser(newUser);
+    setUser(newUser);
+    setLogingStatus(true);
+  }
+
   return (
-    <div className={styles['app-window']}>
-      <Sidebar user={user} chatList={chatList} activeChat={activeChat} setActiveChat={setActiveChat} />
-      <Content>
-        {activeChat.chatId === undefined &&
-          <Intro />
-        }
-        {activeChat.chatId !== undefined &&
-          <Chat user={user} activeChat={activeChat} />
-        }
-      </Content>
+    <div className={classNames(styles['app-window'], { [styles['not-logged']]: !logged })}>
+      {transition((style, item) =>
+        item && user !== undefined || null ? <animated.div style={style} className={styles.app}><App user={user} /></animated.div> : <Login onReceive={HandleLoginData} setLogingStatus={setLogingStatus} />
+      )}
     </div>
   )
 }

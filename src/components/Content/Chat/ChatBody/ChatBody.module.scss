@@ -8,7 +8,7 @@
     flex-direction: column-reverse;
     gap: 2.5px;
     padding-bottom: 20px;
-    background-image: $bg-linear-gradient, url('../../../assets/images/bg-chat-texture.png');
+    background-image: $bg-linear-gradient, url('/public/bg-chat-texture.png');
     background-repeat: repeat;
 
     .message-row {

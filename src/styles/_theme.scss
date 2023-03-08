@@ -8,6 +8,17 @@ $bg-stripe: #00a884;
 $bg-appwindow: #f7f8fa;
 $bx-appwindow: 0 6px 18px rgba(11, 20, 26, .05);
 
+/* Login */
+
+$bg-login-window: #00a884;
+$header-text-color: #fff;
+$bg-facebook-icon: #1877f2;
+$bg-facebook-hover: #fff;
+$body-color: rgb(0, 0, 0);
+$footer-color: #8696a0;
+$bg-footer: #f9f9fa;
+
+
 /* Sidebar Side - Header */
 
 $bg-header: #f0f2f5;
@@ -23,6 +34,7 @@ $search-icon-color: #54656f;
 $arrow-search-icon-color: #00a884;
 $bx-search: 0 2px 3px rgba(11, 20, 26, 0.08);
 
+
 /* Sidebar Side - ChatBox */
 
 $chatbox-title-color: #111b21;
@@ -35,6 +47,8 @@ $chatbox-datetime-active-color: #1fa855;
 $chatbox-message-active-color: #3b4a54;
 $bg-chatbox-hover: #f5f6f6;
 $border-chatbox: 1px solid #e9edef;
+$border-notfound: 1px solid #e9edef;
+$notfound-text-color: #8696a0;
 
 /* Sidebar Side - NewChat */
 

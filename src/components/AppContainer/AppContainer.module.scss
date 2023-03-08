@@ -5,7 +5,7 @@
     background-color: $bg-deep-layer;
     height: 100%;
     overflow-x: auto !important;
-  
+
     @media (min-width: $large-desktop-display) {
         &::after {
             content: ('');
@@ -26,7 +26,7 @@
     }
 
     &::-webkit-scrollbar-track {
-        background-color: $scroll-screen-track; 
+        background-color: $scroll-screen-track;
     }
 
     &::-webkit-scrollbar-thumb {

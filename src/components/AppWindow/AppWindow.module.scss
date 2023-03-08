@@ -3,13 +3,23 @@
 
 .app-window{
     position: relative;
-    background-color: $bg-appwindow;
     z-index: 2;
     height: 100%;
     width: 100%;
     min-width: 748px;
-    box-shadow: $bx-appwindow;
-    display: flex;
+    
+    .app{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        box-shadow: $bx-appwindow;
+        background-color: $bg-appwindow;
+    }
+
+    &.not-logged{
+        background-color: transparent !important;
+        box-shadow: none !important;
+    }
 
     @media (min-width: $large-desktop-display) {
         height: calc(100% - 38px);
