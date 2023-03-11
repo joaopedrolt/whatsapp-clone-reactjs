@@ -16,7 +16,8 @@ function Sidebar({ user, setActiveChat, activeChat }) {
 
   useEffect(() => {
     if (user !== null) {
-      Api.onChatListUpdate(user.id, setChatList);
+      let unsub = Api.onChatListUpdate(user.id, setChatList);
+      return unsub;
     }
   }, [user]);
 

@@ -13,18 +13,18 @@ function ChatList({ inputValue, chatList, setActiveChat, activeChat }) {
   var results = false;
 
   const HandleChatboxClick = (index) => {
-    setActiveChat(chatList[index]);
+    setActiveChat(chatList[index]); 
   }
 
   const HandleTimeFormated = (date) => {
     if (date != null || undefined) {
-      let d = new Date(date.seconds * 10000);
+      let d = new Date(date.seconds * 1000);
       let hours = d.getHours();
       let minutes = d.getMinutes();
       hours = hours < 10 ? '0' + hours : hours;
-      return (`${hours}:${minutes}`)
+      return (`${hours}:${minutes}`);
     } else {
-      return ''
+      return '';
     }
   }
 
@@ -52,9 +52,14 @@ function ChatList({ inputValue, chatList, setActiveChat, activeChat }) {
                   <div onClick={() => HandleChatboxClick(key)} key={key} className={classNames(styles['chat-box'],
                     { [styles.active]: activeChat.chatId == chatBox.chatId })}>
                     <div className={styles.image}>
-                      <img src={chatBox.image} />
+                      <img src={chatBox.image}
+                        onError={({ currentTarget }) => {
+                          currentTarget.onerror = null;
+                          currentTarget.src = "https://www.w3schools.com/howto/img_avatar.png";
+                        }}
+                      />
                     </div>
-                    <div className={classNames(styles.content/* , { [styles.active]: chatBox.newMessages.isThere } */)}>
+                    <div className={classNames(styles.content, { [styles.active]: chatBox.unreadMessage })}>
                       <div className={styles['top-row']}>
                         <h3>{chatBox.title}</h3>
                         <p>{time}</p>
@@ -63,7 +68,7 @@ function ChatList({ inputValue, chatList, setActiveChat, activeChat }) {
                         <span>{chatBox.lastMessage}</span>
                         <div className={styles.icons}>
                           <span className={styles.notifications}>
-                            <p>{/* {chatBox.newMessages.amount} */}</p>
+                            <p>!</p>
                           </span>
                           <ArrowDown className={styles['arrow-down-icon']} />
                         </div>
@@ -80,9 +85,14 @@ function ChatList({ inputValue, chatList, setActiveChat, activeChat }) {
             return (<div onClick={() => HandleChatboxClick(key)} key={key} className={classNames(styles['chat-box'],
               { [styles.active]: activeChat.chatId == chatBox.chatId })}>
               <div className={styles.image}>
-                <img src={chatBox.image} />
+                <img src={chatBox.image}
+                  onError={({ currentTarget }) => {
+                    currentTarget.onerror = null;
+                    currentTarget.src = "https://www.w3schools.com/howto/img_avatar.png";
+                  }}
+                />
               </div>
-              <div className={classNames(styles.content/* , { [styles.active]: chatBox.newMessages.isThere } */)}>
+              <div className={classNames(styles.content, { [styles.active]: chatBox.unreadMessage })}>
                 <div className={styles['top-row']}>
                   <h3>{chatBox.title}</h3>
                   <p>{time}</p>
@@ -91,7 +101,7 @@ function ChatList({ inputValue, chatList, setActiveChat, activeChat }) {
                   <span>{chatBox.lastMessage}</span>
                   <div className={styles.icons}>
                     <span className={styles.notifications}>
-                      <p>{/* {chatBox.newMessages.amount} */}</p>
+                      <p>!</p>
                     </span>
                     <ArrowDown className={styles['arrow-down-icon']} />
                   </div>

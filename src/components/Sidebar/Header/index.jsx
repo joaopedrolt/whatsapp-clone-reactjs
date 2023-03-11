@@ -12,7 +12,12 @@ function Header({ setNewchatMenuStatus, user }) {
     return (
         <header className={styles['header-sidebar']}>
             <img src={user.avatar}
-                alt="" className={styles.avatar} />
+                alt="" className={styles.avatar}
+                onError={({ currentTarget }) => {
+                    currentTarget.onerror = null;
+                    currentTarget.src = "https://www.w3schools.com/howto/img_avatar.png";
+                }}
+            />
             <div className={styles.icons}>
                 <div className={styles.icon} onClick={HandlNewchatClick}>
                     <ChatButton fill={'#54656f'} />

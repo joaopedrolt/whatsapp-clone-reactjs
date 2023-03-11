@@ -8,97 +8,120 @@
     flex-direction: column-reverse;
     gap: 2.5px;
     padding-bottom: 20px;
-    background-image: $bg-linear-gradient, url('/public/bg-chat-texture.png');
+    background-image: $bg-linear-gradient, url('/bg-chat-texture.png');
     background-repeat: repeat;
 
-    .message-row {
-        .message-box-container {
-            display: flex;
-            flex-direction: column;
-            user-select: text;
+    .messages-container {
 
-            .message-box {
-                max-width: 65%;
-                position: relative;
-                padding: 6px 7px 8px 9px;
-                border-radius: 7.5px;
+        .message-row {
+            margin-top: 3.5px;
 
-                .message {
-                    display: block;
-                    line-height: 19px;
-                    color: $message-color;
-                    font-size: 14.2px;
-                    margin-right: 9px;
+            .message-box-container {
+                display: flex;
+                flex-direction: column;
+                user-select: text;
+
+                .message-box {
+                    max-width: 65%;
                     position: relative;
-                    z-index: 8;
-                    overflow-wrap: break-word;
-                }
+                    padding: 6px 7px 8px 9px;
+                    border-radius: 7.5px;
 
-                .time-filler {
-                    visibility: hidden;
-                    user-select: none;
-                    opacity: 0;
-                    color: transparent;
-                    background-color: transparent;
-                }
+                    .message {
+                        display: block;
+                        line-height: 19px;
+                        color: $message-color;
+                        font-size: 14.2px;
+                        margin-right: 9px;
+                        position: relative;
+                        z-index: 8;
+                        overflow-wrap: break-word;
+                    }
 
-                .time {
-                    position: absolute;
-                    font-size: 11px;
-                    color: $time-color;
-                    right: 10px;
-                    bottom: 4px;
-                }
+                    .time-filler {
+                        visibility: hidden;
+                        user-select: none;
+                        opacity: 0;
+                        color: transparent;
+                        background-color: transparent;
+                    }
 
-                @media (max-width: $message-width-large-adjust) {
-                    max-width: 75%;
-                }
+                    .time {
+                        position: absolute;
+                        font-size: 11px;
+                        color: $time-color;
+                        right: 10px;
+                        bottom: 4px;
+                    }
 
-                @media (max-width: $message-width-mid-adjust) {
-                    max-width: 85%;
-                }
+                    @media (max-width: $message-width-large-adjust) {
+                        max-width: 75%;
+                    }
 
-                @media (max-width: $message-width-small-adjust) {
-                    max-width: 95%;
-                }
-            }
-        }
+                    @media (max-width: $message-width-mid-adjust) {
+                        max-width: 85%;
+                    }
 
-        &.out {
-            .message-box-container {
-                padding-right: 56.5px;
-                padding-left: 71px;
-                align-items: flex-end;
-
-                .message-box {
-                    background-color: $bg-message-box-out;
-
-                }
-
-                @media (max-width: $message-box-padding-adjust) {
-                    padding-right: 25px;
-                    padding-left: 53px;
+                    @media (max-width: $message-width-small-adjust) {
+                        max-width: 95%;
+                    }
                 }
             }
-        }
 
-        &.in {
-            .message-box-container {
-                padding-right: 63px;
-                padding-left: 63px;
-                align-items: flex-start;
+            &.out {
+                .message-box-container {
+                    padding-right: 56.5px;
+                    padding-left: 71px;
+                    align-items: flex-end;
 
-                .message-box {
-                    background-color: $bg-message-box-in;
-                }
+                    .message-box {
+                        background-color: $bg-message-box-out;
 
-                @media (max-width: $message-box-padding-adjust) {
-                    padding-left: 27px;
-                    padding-right: 19px;
+                    }
+
+                    @media (max-width: $message-box-padding-adjust) {
+                        padding-right: 25px;
+                        padding-left: 53px;
+                    }
                 }
             }
-        }
 
+            &.in {
+                .message-box-container {
+                    padding-right: 63px;
+                    padding-left: 63px;
+                    align-items: flex-start;
+
+                    .message-box {
+                        background-color: $bg-message-box-in;
+                    }
+
+                    @media (max-width: $message-box-padding-adjust) {
+                        padding-left: 27px;
+                        padding-right: 19px;
+                    }
+                }
+            }
+
+            &.timestamp {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .timestamp-container {
+                    padding: 3px 12px 9px;
+                    background-color: hsla(0, 0%, 100%, 0.95);
+                    box-shadow: 0 1px 0.5px rgba(11, 20, 26, .13);
+                    border-radius: 7.5px;
+
+                    span {
+                        font-size: 12.5px;
+                        color: #54656f;
+                    }
+                }
+
+            }
+        }
     }
 
     &::-webkit-scrollbar {

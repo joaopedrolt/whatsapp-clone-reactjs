@@ -10,12 +10,12 @@ import Api from 'src/api';
 import classNames from 'classnames';
 
 function AppWindow() {
-  const [logged, setLogingStatus] = useState(true);
-  const [user, setUser] = useState({
-    id: 'ImrI1hELBTYb1dCtdcPhKbe6exE2',
-    name: 'Joao Pedro Lima',
-    avatar: 'https://graph.facebook.com/6036314086458148/picture?height=500&access_token=EAAi8Tv2ZBhi8BAMmvGkkblJcKTNlZAjq6HQkQeDPxyV8uxpZAZCIxEl5wik9I2RdeWbus3M9jd84o3lrJ7gASvuM3ZAnGuUT5AygQlrJnD8CXpJjsrT0n4fBCgzEk3arZB6NZAFnUp06sgPPREacJdHCNbkmE18qurjveUncBF4uo26ZA7BUHt5ZA0AjTfjAYeazVpVZB2AnOKkjGhZBvLu8mFB18BVz1JqUyxBg8J96jGY79qkIsEDu6LCYKzrCMcL7KwZD'
-  });
+  const [logged, setLogingStatus] = useState(false);
+  const [user, setUser] = useState(null/* {
+    id: 'OTv3OCqo4fn7cyDf42Oi',
+    name: 'Test',
+    avatar: 'https://www.w3schools.com/howto/img_avatar.png'
+  } */);
   const transition = useTransition(logged, {
     from: { opacity: 0, scale: 0 },
     enter: { opacity: 1, scale: 1 }

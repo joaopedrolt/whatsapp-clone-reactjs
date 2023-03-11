@@ -94,15 +94,20 @@ function NewChat({ user, newChatMenu, setNewchatMenuStatus }) {
                 </div>
                 {inputValue.length > 0 ? <>
                     {contacts.map((contact, key) => {
-                        if (contact.title.toLowerCase().includes(inputValue.toLowerCase())) {
+                        if (contact.name.toLowerCase().includes(inputValue.toLowerCase())) {
                             results = true;
                             return (<div key={key} className={styles['contact-box']}>
                                 <div className={styles.image}>
-                                    <img src={contact.avatar} />
+                                    <img src={contact.avatar}
+                                        onError={({ currentTarget }) => {
+                                            currentTarget.onerror = null;
+                                            currentTarget.src = "https://www.w3schools.com/howto/img_avatar.png";
+                                        }}
+                                    />
                                 </div>
                                 <div className={styles.content}>
                                     <div className={styles['row']}>
-                                        <h3>{contact.title}</h3>
+                                        <h3>{contact.name}</h3>
                                     </div>
                                 </div>
                             </div>)
@@ -111,9 +116,14 @@ function NewChat({ user, newChatMenu, setNewchatMenuStatus }) {
                 </> :
                     <>
                         {contacts.map((contact, key) => (
-                            <div onClick={() => {AddNewChat(contact)}} key={key} className={styles['contact-box']}>
+                            <div onClick={() => { AddNewChat(contact) }} key={key} className={styles['contact-box']}>
                                 <div className={styles.image}>
-                                    <img src={contact.avatar} />
+                                    <img src={contact.avatar}
+                                        onError={({ currentTarget }) => {
+                                            currentTarget.onerror = null;
+                                            currentTarget.src = "https://www.w3schools.com/howto/img_avatar.png";
+                                        }}
+                                    />
                                 </div>
                                 <div className={styles.content}>
                                     <div className={styles['row']}>

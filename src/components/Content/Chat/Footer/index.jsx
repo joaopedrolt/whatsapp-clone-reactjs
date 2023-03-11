@@ -11,7 +11,7 @@ import ClipButton from 'src/assets/icons/clip-icon.jsx';
 
 import Input from './Input';
 
-function Footer() {
+function Footer({ user, activeChat, users }) {
     const [emojiPickerActive, setEmojiPickerStatus] = useState(false);
     const [emoji, setEmoji] = useState({ emoji: '', key: 0 });
 
@@ -43,7 +43,7 @@ function Footer() {
                         <EmojiButton className={styles['emoji-button']} onClick={HandleEmojiButtonClick} />
                         <ClipButton className={styles['clip-button']} />
                     </div>
-                    <Input emoji={emoji} />
+                    <Input users={users} closeEmokiPicker={HandleEmojiCloseButtonClick} activeChat={activeChat} user={user} emoji={emoji} />
                 </footer>
             </footer>
         </>

@@ -5,7 +5,9 @@ import styles from './Input.module.scss'
 import MicrophoneButton from 'src/assets/icons/microphone-icon.jsx';
 import SendButton from 'src/assets/icons/send-icon.jsx';
 
-function Input({ emoji }) {
+import Api from 'src/api';
+
+function Input({ closeEmokiPicker, emoji, user, activeChat, users }) {
 
     const [inputValue, setInputValue] = useState('');
     const [listening, setListening] = useState(false);
@@ -61,10 +63,23 @@ function Input({ emoji }) {
         };
     }
 
+    const HandleInputKeyUp = (e) => {
+        if (e.keyCode == 13) {
+            HandleSendClick();
+        }
+    }
+
+    const HandleSendClick = async () => {
+        inputRef.current.innerHTML = '';
+        await Api.sendMessage(activeChat.chatId, user.id, inputValue, users);
+        closeEmokiPicker();
+        setInputValue('');
+    }
+
     return (
         <>
-            <span data-placeholder='Mensagem' ref={inputRef} className={styles.input} onInput={HandleInputChange} contentEditable="true" data-max-length="1"></span>
-            {inputValue.length > 0 ? <SendButton className={styles['send-button']} /> :
+            <span data-placeholder='Mensagem' onKeyUp={HandleInputKeyUp} ref={inputRef} className={styles.input} onInput={HandleInputChange} contentEditable="true" data-max-length="1"></span>
+            {inputValue.length > 0 ? <SendButton onClick={HandleSendClick} className={styles['send-button']} /> :
                 <MicrophoneButton onClick={HandleMicClick} fill={listening ? 'red' : ''} className={styles['microphone-button']} />}
         </>
     )
