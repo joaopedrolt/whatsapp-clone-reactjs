@@ -85,7 +85,7 @@ function ChatList({ inputValue, chatList, setActiveChat, activeChat }) {
             return (<div onClick={() => HandleChatboxClick(key)} key={key} className={classNames(styles['chat-box'],
               { [styles.active]: activeChat.chatId == chatBox.chatId })}>
               <div className={styles.image}>
-                <img src={chatBox.image}
+                <img src={chatBox.image} className={styles.loading}
                   onError={({ currentTarget }) => {
                     currentTarget.onerror = null;
                     currentTarget.src = "https://www.w3schools.com/howto/img_avatar.png";

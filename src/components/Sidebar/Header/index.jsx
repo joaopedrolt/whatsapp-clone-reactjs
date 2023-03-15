@@ -12,7 +12,7 @@ function Header({ setNewchatMenuStatus, user }) {
     return (
         <header className={styles['header-sidebar']}>
             <img src={user.avatar}
-                alt="" className={styles.avatar}
+                alt="" className={`${styles.avatar} ${styles.loading}`}
                 onError={({ currentTarget }) => {
                     currentTarget.onerror = null;
                     currentTarget.src = "https://www.w3schools.com/howto/img_avatar.png";

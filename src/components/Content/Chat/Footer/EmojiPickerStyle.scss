@@ -3,6 +3,7 @@
 .EmojiPickerReact {
     background-color: $bg-chat-inputbar !important;
     transition: all .3s ease !important;
+    transition-delay: .11s !important;
     overflow-y: hidden !important;
 
     .epr-emoji-category-label {

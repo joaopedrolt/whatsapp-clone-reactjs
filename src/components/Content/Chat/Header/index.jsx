@@ -10,7 +10,7 @@ function Header({ activeChat }) {
     return (
         <header className={styles['chat-header']}>
             <div className={styles.avatar}>
-                {transition((style) => <animated.img style={style} src={activeChat.image} alt=""
+                {transition((style) => <animated.img style={style} className={styles.loading} src={activeChat.image} alt=""
                     onError={({ currentTarget }) => {
                         currentTarget.onerror = null;
                         currentTarget.src = "https://www.w3schools.com/howto/img_avatar.png";

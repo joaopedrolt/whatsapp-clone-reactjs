@@ -1,11 +1,15 @@
 import firebase from 'firebase/compat/app';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { v4 } from 'uuid';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import "firebase/compat/storage";
 
 import firebaseConfig from "./firebaseConfig";
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebaseApp.firestore();
+const storage = firebase.storage();
 
 export default {
     fbPopup: async () => {
@@ -35,7 +39,6 @@ export default {
         return list;
     },
     addNewChat: async (user, user2) => {
-
         let u = await db.collection('users').doc(user.id).get();
         let uData = u.data();
         let areadyExists = false;
@@ -51,6 +54,7 @@ export default {
         if (!areadyExists) {
             let newChat = await db.collection('chats').add({
                 messages: [],
+                newChat: true,
                 users: [user.id, user2.id]
             });
 
@@ -74,7 +78,6 @@ export default {
         } else {
             alert('Chat já existente!')
         }
-
     },
     onChatListUpdate: (userId, setChatList) => {
         return db.collection('users').doc(userId).onSnapshot((doc) => {
@@ -120,12 +123,10 @@ export default {
 
         for (let i in chats) {
             if (chats[i].chatId == chatId) {
-                if(chats[i].unreadMessage == true){
-                    chats[i].unreadMessage = false;
-                    await user.update({
-                        chats
-                    })
-                }
+                chats[i].unreadMessage = false;
+                await user.update({
+                    chats
+                });
             }
         }
     },
@@ -135,15 +136,20 @@ export default {
 
         await chatDoc.get().then(async (doc) => {
             if (doc.exists) {
-                let dateObject = doc.data().lastDate;
+                let chat = doc.data();
+                let dateObject = chat.lastDate;
+
+                if (chat.newChat) {
+                    await db.collection('chats').doc(chatId).update({
+                        newChat: false
+                    });
+                }
 
                 if (dateObject) {
-
                     let dateString = dateObject.toDate();
                     let date = new Date(dateString);
 
                     if (!(now.getDate() == date.getDate() && now.getMonth() == date.getMonth() && now.getFullYear() == date.getFullYear())) {
-                        alert(`passou`)
                         await chatDoc.update({
                             lastDate: now
                         }).then(async () => {
@@ -157,7 +163,6 @@ export default {
                             })
                         });
                     }
-
                 } else {
                     await chatDoc.update({
                         lastDate: now
@@ -198,8 +203,6 @@ export default {
             }
 
             if (uData.chats) {
-                chats = [...uData.chats];
-
                 for (let e in chats) {
                     if (chats[e].chatId == chatId) {
                         chats[e].lastMessage = body;
@@ -208,10 +211,46 @@ export default {
                     }
                 }
 
-                await db.collection('users').doc(users[i]).update({
-                    chats
-                })
+                setTimeout(async () => {
+                    await db.collection('users').doc(users[i]).update({
+                        chats
+                    })
+                }, 400);
             }
         }
+    },
+    newMessageStatus: async (chatId, setLoading, isLoading, messagesListLength) => {
+        const chatDoc = db.collection('chats').doc(chatId);
+        await chatDoc.get().then((doc) => {
+            if (doc.exists) {
+                let chat = doc.data();
+                if (chat.newChat) {
+                    setLoading(false);
+                } else if (!chat.newChat && isLoading && messagesListLength > 0) {
+                    setLoading(false);
+                }
+            }
+        })
+    },
+    sendImageMessage: async (file, chatId, userId) => {
+        let now = new Date();
+        const chatDoc = db.collection('chats').doc(chatId);
+        const storageRef = ref(storage, `images/${chatId}/${v4()}`);
+
+        uploadBytesResumable(storageRef, file)
+            .then((snapshot) => {
+                getDownloadURL(snapshot.ref).then(async (url) => {
+                    await chatDoc.update({
+                        messages: firebase.firestore.FieldValue.arrayUnion({
+                            authorId: userId,
+                            body: url,
+                            sentDate: now,
+                            type: 'image',
+                        })
+                    });
+                });
+            }).catch(() => {
+                alert('Erro ao carregar imagem!');
+            });
     }
 };

@@ -98,7 +98,7 @@ function NewChat({ user, newChatMenu, setNewchatMenuStatus }) {
                             results = true;
                             return (<div key={key} className={styles['contact-box']}>
                                 <div className={styles.image}>
-                                    <img src={contact.avatar}
+                                    <img src={contact.avatar} className={styles.loading} 
                                         onError={({ currentTarget }) => {
                                             currentTarget.onerror = null;
                                             currentTarget.src = "https://www.w3schools.com/howto/img_avatar.png";
@@ -118,7 +118,7 @@ function NewChat({ user, newChatMenu, setNewchatMenuStatus }) {
                         {contacts.map((contact, key) => (
                             <div onClick={() => { AddNewChat(contact) }} key={key} className={styles['contact-box']}>
                                 <div className={styles.image}>
-                                    <img src={contact.avatar}
+                                    <img src={contact.avatar} className={styles.loading}
                                         onError={({ currentTarget }) => {
                                             currentTarget.onerror = null;
                                             currentTarget.src = "https://www.w3schools.com/howto/img_avatar.png";

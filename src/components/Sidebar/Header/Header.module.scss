@@ -1,5 +1,6 @@
 @import 'src/styles/breakpoints';
 @import 'src/styles/theme';
+@import 'src/styles/animations';
 
 .header-sidebar {
     height: 59px;
@@ -15,6 +16,10 @@
         height: 40px;
         width: 40px;
         border-radius: 50%;
+
+        .loading{
+            animation: $skleton-animation-chat-header;
+        }
     }
 
     .icons {
