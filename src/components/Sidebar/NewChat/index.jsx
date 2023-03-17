@@ -11,7 +11,7 @@ import Api from 'src/api';
 
 import classNames from 'classnames';
 
-function NewChat({ user, newChatMenu, setNewchatMenuStatus }) {
+function NewChat({ user, newChatMenu, setNewchatMenuStatus, setActiveChat }) {
     const [inputFocus, setInputFocus] = useState(false);
     const [inputValue, setValue] = useState('');
     const [contacts, setContacts] = useState([]);
@@ -28,8 +28,8 @@ function NewChat({ user, newChatMenu, setNewchatMenuStatus }) {
     }, [user])
 
     const AddNewChat = async (user2) => {
-        await Api.addNewChat(user, user2);
         setNewchatMenuStatus(false);
+        await Api.addNewChat(user, user2, setActiveChat);
     }
 
     const ref = useRef(null);
@@ -96,9 +96,9 @@ function NewChat({ user, newChatMenu, setNewchatMenuStatus }) {
                     {contacts.map((contact, key) => {
                         if (contact.name.toLowerCase().includes(inputValue.toLowerCase())) {
                             results = true;
-                            return (<div key={key} className={styles['contact-box']}>
+                            return (<div key={key} onClick={() => { AddNewChat(contact) }} className={styles['contact-box']}>
                                 <div className={styles.image}>
-                                    <img src={contact.avatar} className={styles.loading} 
+                                    <img src={contact.avatar} className={styles.loading}
                                         onError={({ currentTarget }) => {
                                             currentTarget.onerror = null;
                                             currentTarget.src = "https://www.w3schools.com/howto/img_avatar.png";

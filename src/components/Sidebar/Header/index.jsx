@@ -1,12 +1,24 @@
+import { useState } from 'react';
+
 import styles from './Header.module.scss'
 
 import ChatButton from 'src/assets/icons/chat-icon.jsx';
 import MenuButton from 'src/assets/icons/menu-header-icon.jsx';
+import classNames from 'classnames';
 
-function Header({ setNewchatMenuStatus, user }) {
+function Header({ setNewchatMenuStatus, user, logout }) {
+    const [logoutMenu, setLogoutMenuStatus] = useState(false);
 
-    const HandlNewchatClick = () => {
+    const HandleNewchatClick = () => {
         setNewchatMenuStatus(true);
+    }
+
+    const HandleLogoutMenuClick = () => {
+        setLogoutMenuStatus(logoutMenu => !logoutMenu);
+    }
+
+    const HandleLogoutClick = () =>{
+        logout();
     }
 
     return (
@@ -19,12 +31,17 @@ function Header({ setNewchatMenuStatus, user }) {
                 }}
             />
             <div className={styles.icons}>
-                <div className={styles.icon} onClick={HandlNewchatClick}>
+                <div className={styles.icon} onClick={HandleNewchatClick}>
                     <ChatButton fill={'#54656f'} />
                 </div>
-                <div className={styles.icon}>
+                <div className={classNames(styles.icon, { [styles.active]: logoutMenu })} onClick={HandleLogoutMenuClick}>
                     <MenuButton fill={'#54656f'} />
                 </div>
+            </div>
+            <div className={classNames(styles['logout-menu'], { [styles.active]: logoutMenu })}>
+                <ul>
+                    <li onClick={HandleLogoutClick}>Desconectar</li>
+                </ul>
             </div>
         </header>
     )

@@ -1,10 +1,15 @@
+import { useState, useEffect } from 'react';
 import styles from './Login.module.scss'
-
 import WppIcon from 'src/assets/icons/wpp-icon.jsx';
-
 import Api from 'src/api';
+import classNames from 'classnames';
 
-function Login({ onReceive, setLogingStatus }) {
+function Login({ onReceive }) {
+  const [loaded, setLoadingState] = useState();
+
+  useEffect(() => {
+    setLoadingState(true);
+  }, []);
 
   const HandleFbButtonClick = async () => {
     let result = await Api.fbPopup();
@@ -18,7 +23,7 @@ function Login({ onReceive, setLogingStatus }) {
 
   return (
     <>
-      <div className={styles.login}>
+      <div className={classNames(styles.login, { [styles.loaded]: loaded })}>
         <div className={styles['login-window']}>
           <header>
             <div className={styles.heading}>

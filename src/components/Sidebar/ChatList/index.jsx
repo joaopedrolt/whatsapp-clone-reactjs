@@ -13,16 +13,27 @@ function ChatList({ inputValue, chatList, setActiveChat, activeChat }) {
   var results = false;
 
   const HandleChatboxClick = (index) => {
-    setActiveChat(chatList[index]); 
+    setActiveChat(chatList[index]);
   }
 
   const HandleTimeFormated = (date) => {
     if (date != null || undefined) {
-      let d = new Date(date.seconds * 1000);
-      let hours = d.getHours();
-      let minutes = d.getMinutes();
-      hours = hours < 10 ? '0' + hours : hours;
-      return (`${hours}:${minutes}`);
+      const d = date.toDate();
+      let now = new Date();
+      if (d.getDate() == now.getDate() && d.getMonth() == now.getMonth() && d.getFullYear() == now.getFullYear()) {
+        let hours = d.getHours();
+        let minutes = d.getMinutes();
+        if (hours < 10) {
+          hours = `${0}${hours}`
+        }
+        if (minutes < 10) {
+          minutes = `${minutes}${0}`
+        }
+        return (`${hours}:${minutes}`);
+      }
+      else {
+        return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+      }
     } else {
       return '';
     }
@@ -64,15 +75,21 @@ function ChatList({ inputValue, chatList, setActiveChat, activeChat }) {
                         <h3>{chatBox.title}</h3>
                         <p>{time}</p>
                       </div>
-                      <div className={styles['bottom-row']}>
-                        <span>{chatBox.lastMessage}</span>
-                        <div className={styles.icons}>
-                          <span className={styles.notifications}>
-                            <p>!</p>
-                          </span>
-                          <ArrowDown className={styles['arrow-down-icon']} />
+                      {chatBox.lastMessage != '' ? <>
+                        <div className={styles['bottom-row']}>
+                          {chatBox.lastMessage == '&#x1F3A8 Imagem' ?
+                            <span dangerouslySetInnerHTML={{ __html: chatBox.lastMessage }}></span>
+                            : <span>{chatBox.lastMessage}</span>
+                          }
+                          <div className={styles.icons}>
+                            <span className={styles.notifications}>
+                              <p>!</p>
+                            </span>
+                            <ArrowDown className={styles['arrow-down-icon']} />
+                          </div>
                         </div>
-                      </div>
+                      </> : <></>
+                      }
                     </div>
                   </div>
                 )
@@ -97,15 +114,21 @@ function ChatList({ inputValue, chatList, setActiveChat, activeChat }) {
                   <h3>{chatBox.title}</h3>
                   <p>{time}</p>
                 </div>
-                <div className={styles['bottom-row']}>
-                  <span>{chatBox.lastMessage}</span>
-                  <div className={styles.icons}>
-                    <span className={styles.notifications}>
-                      <p>!</p>
-                    </span>
-                    <ArrowDown className={styles['arrow-down-icon']} />
+                {chatBox.lastMessage != '' ? <>
+                  <div className={styles['bottom-row']}>
+                    {chatBox.lastMessage == '&#x1F3A8 Imagem' ?
+                      <span dangerouslySetInnerHTML={{ __html: chatBox.lastMessage }}></span>
+                      : <span>{chatBox.lastMessage}</span>
+                    }
+                    <div className={styles.icons}>
+                      <span className={styles.notifications}>
+                        <p>!</p>
+                      </span>
+                      <ArrowDown className={styles['arrow-down-icon']} />
+                    </div>
                   </div>
-                </div>
+                </> : <></>
+                }
               </div>
             </div>)
           })}

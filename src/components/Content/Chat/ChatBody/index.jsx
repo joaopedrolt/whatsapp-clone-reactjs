@@ -7,7 +7,6 @@ import ImgMessageType from './ImageMessageType';
 import classNames from 'classnames';
 import { ClipLoader } from 'react-spinners';
 
-
 function ChatBody({ user, activeChat, setUsers }) {
     const [messagesList, setMessagesList] = useState([]);
     const [isLoading, setLoading] = useState(true);
@@ -27,10 +26,15 @@ function ChatBody({ user, activeChat, setUsers }) {
 
     const HandleTimeFormated = (date) => {
         if (date != null || undefined) {
-            let d = new Date(date.seconds * 1000);
+            const d = date.toDate();
             let hours = d.getHours();
             let minutes = d.getMinutes();
-            hours = hours < 10 ? '0' + hours : hours;
+            if (hours < 10) {
+                hours = `${0}${hours}`
+            }
+            if (minutes < 10) {
+                minutes = `${minutes}${0}`
+            }
             return (`${hours}:${minutes}`);
         } else {
             return '';

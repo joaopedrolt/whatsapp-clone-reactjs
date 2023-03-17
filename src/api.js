@@ -38,7 +38,7 @@ export default {
         })
         return list;
     },
-    addNewChat: async (user, user2) => {
+    addNewChat: async (user, user2, setActiveChat) => {
         let u = await db.collection('users').doc(user.id).get();
         let uData = u.data();
         let areadyExists = false;
@@ -75,8 +75,15 @@ export default {
                     with: user.id
                 })
             });
+
+            setActiveChat({
+                chatId: newChat.id,
+                image: user2.avatar,
+                title: user2.name,
+                with: user2.id
+            });
         } else {
-            alert('Chat já existente!')
+            alert('Chat já existente!');
         }
     },
     onChatListUpdate: (userId, setChatList) => {
@@ -131,25 +138,41 @@ export default {
         }
     },
     sendMessage: async (chatId, userId, body, users) => {
-        let now = new Date();
-        const chatDoc = db.collection('chats').doc(chatId);
+        if (body !== '') {
+            let now = new Date();
+            console.log(body);
+            const chatDoc = db.collection('chats').doc(chatId);
 
-        await chatDoc.get().then(async (doc) => {
-            if (doc.exists) {
-                let chat = doc.data();
-                let dateObject = chat.lastDate;
+            await chatDoc.get().then(async (doc) => {
+                if (doc.exists) {
+                    let chat = doc.data();
+                    let dateObject = chat.lastDate;
 
-                if (chat.newChat) {
-                    await db.collection('chats').doc(chatId).update({
-                        newChat: false
-                    });
-                }
+                    if (chat.newChat) {
+                        await db.collection('chats').doc(chatId).update({
+                            newChat: false
+                        });
+                    }
 
-                if (dateObject) {
-                    let dateString = dateObject.toDate();
-                    let date = new Date(dateString);
+                    if (dateObject) {
+                        let dateString = dateObject.toDate();
+                        let date = new Date(dateString);
 
-                    if (!(now.getDate() == date.getDate() && now.getMonth() == date.getMonth() && now.getFullYear() == date.getFullYear())) {
+                        if (!(now.getDate() == date.getDate() && now.getMonth() == date.getMonth() && now.getFullYear() == date.getFullYear())) {
+                            await chatDoc.update({
+                                lastDate: now
+                            }).then(async () => {
+                                await chatDoc.update({
+                                    messages: firebase.firestore.FieldValue.arrayUnion({
+                                        authorId: '',
+                                        body: '',
+                                        sentDate: now,
+                                        type: 'timeStamp',
+                                    })
+                                })
+                            });
+                        }
+                    } else {
                         await chatDoc.update({
                             lastDate: now
                         }).then(async () => {
@@ -163,60 +186,48 @@ export default {
                             })
                         });
                     }
-                } else {
-                    await chatDoc.update({
-                        lastDate: now
-                    }).then(async () => {
-                        await chatDoc.update({
-                            messages: firebase.firestore.FieldValue.arrayUnion({
-                                authorId: '',
-                                body: '',
-                                sentDate: now,
-                                type: 'timeStamp',
-                            })
-                        })
-                    });
                 }
-            }
-        })
-
-        await db.collection('chats').doc(chatId).update({
-            messages: firebase.firestore.FieldValue.arrayUnion({
-                authorId: userId,
-                body,
-                sentDate: now,
-                type: 'text',
             })
-        })
 
-        for (let i in users) {
-            let u = await db.collection('users').doc(users[i]).get();
-            let uData = u.data();
-            let chats = [...uData.chats];
+            await db.collection('chats').doc(chatId).update({
+                messages: firebase.firestore.FieldValue.arrayUnion({
+                    authorId: userId,
+                    body,
+                    sentDate: now,
+                    type: 'text',
+                })
+            })
 
-            if (users[i] != userId) {
-                for (let e in chats) {
-                    if (chats[e].chatId == chatId) {
-                        chats[e].unreadMessage = true;
+            for (let i in users) {
+                let u = await db.collection('users').doc(users[i]).get();
+                let uData = u.data();
+                let chats = [...uData.chats];
+
+                if (users[i] != userId) {
+                    for (let e in chats) {
+                        if (chats[e].chatId == chatId) {
+                            chats[e].unreadMessage = true;
+                        }
                     }
                 }
-            }
 
-            if (uData.chats) {
-                for (let e in chats) {
-                    if (chats[e].chatId == chatId) {
-                        chats[e].lastMessage = body;
-                        chats[e].lastMessage = body;
-                        chats[e].lastMessageDate = now;
+                if (uData.chats) {
+                    for (let e in chats) {
+                        if (chats[e].chatId == chatId) {
+                            chats[e].lastMessage = body;
+                            chats[e].lastMessageDate = now;
+                        }
                     }
-                }
 
-                setTimeout(async () => {
-                    await db.collection('users').doc(users[i]).update({
-                        chats
-                    })
-                }, 400);
+                    setTimeout(async () => {
+                        await db.collection('users').doc(users[i]).update({
+                            chats
+                        })
+                    }, 400);
+                }
             }
+        } else {
+            alert('O corpo da mensagem não pode ser vazio!')
         }
     },
     newMessageStatus: async (chatId, setLoading, isLoading, messagesListLength) => {
@@ -232,7 +243,7 @@ export default {
             }
         })
     },
-    sendImageMessage: async (file, chatId, userId) => {
+    sendImageMessage: async (file, chatId, userId, users) => {
         let now = new Date();
         const chatDoc = db.collection('chats').doc(chatId);
         const storageRef = ref(storage, `images/${chatId}/${v4()}`);
@@ -240,6 +251,52 @@ export default {
         uploadBytesResumable(storageRef, file)
             .then((snapshot) => {
                 getDownloadURL(snapshot.ref).then(async (url) => {
+                    await chatDoc.get().then(async (doc) => {
+                        if (doc.exists) {
+                            let chat = doc.data();
+                            let dateObject = chat.lastDate;
+
+                            if (chat.newChat) {
+                                await db.collection('chats').doc(chatId).update({
+                                    newChat: false
+                                });
+                            }
+
+                            if (dateObject) {
+                                let dateString = dateObject.toDate();
+                                let date = new Date(dateString);
+
+                                if (!(now.getDate() == date.getDate() && now.getMonth() == date.getMonth() && now.getFullYear() == date.getFullYear())) {
+                                    await chatDoc.update({
+                                        lastDate: now
+                                    }).then(async () => {
+                                        await chatDoc.update({
+                                            messages: firebase.firestore.FieldValue.arrayUnion({
+                                                authorId: '',
+                                                body: '',
+                                                sentDate: now,
+                                                type: 'timeStamp',
+                                            })
+                                        })
+                                    });
+                                }
+                            } else {
+                                await chatDoc.update({
+                                    lastDate: now
+                                }).then(async () => {
+                                    await chatDoc.update({
+                                        messages: firebase.firestore.FieldValue.arrayUnion({
+                                            authorId: '',
+                                            body: '',
+                                            sentDate: now,
+                                            type: 'timeStamp',
+                                        })
+                                    })
+                                });
+                            }
+                        }
+                    })
+
                     await chatDoc.update({
                         messages: firebase.firestore.FieldValue.arrayUnion({
                             authorId: userId,
@@ -248,6 +305,35 @@ export default {
                             type: 'image',
                         })
                     });
+
+                    for (let i in users) {
+                        let u = await db.collection('users').doc(users[i]).get();
+                        let uData = u.data();
+                        let chats = [...uData.chats];
+
+                        if (users[i] != userId) {
+                            for (let e in chats) {
+                                if (chats[e].chatId == chatId) {
+                                    chats[e].unreadMessage = true;
+                                }
+                            }
+                        }
+
+                        if (uData.chats) {
+                            for (let e in chats) {
+                                if (chats[e].chatId == chatId) {
+                                    chats[e].lastMessage = '&#x1F3A8 Imagem';
+                                    chats[e].lastMessageDate = now;
+                                }
+                            }
+
+                            setTimeout(async () => {
+                                await db.collection('users').doc(users[i]).update({
+                                    chats
+                                })
+                            }, 400);
+                        }
+                    }
                 });
             }).catch(() => {
                 alert('Erro ao carregar imagem!');

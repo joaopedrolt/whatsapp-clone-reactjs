@@ -10,12 +10,12 @@ import Api from 'src/api';
 import classNames from 'classnames';
 
 function AppWindow() {
-  const [logged, setLogingStatus] = useState(true);
-  const [user, setUser] = useState({
+  const [logged, setLogingStatus] = useState(false);
+  const [user, setUser] = useState(null/* {
     id: '2n3oEYb4wPQQdztgbdJY',
     name: 'Test',
     avatar: 'https://www.w3schools.com/howto/img_avatar.png'
-  });
+  } */);
   const transition = useTransition(logged, {
     from: { opacity: 0, scale: 0 },
     enter: { opacity: 1, scale: 1 }
@@ -32,10 +32,15 @@ function AppWindow() {
     setLogingStatus(true);
   }
 
+  const HandleLogout = () => {
+    setUser(null);
+    setLogingStatus(false);
+  }
+
   return (
     <div className={classNames(styles['app-window'], { [styles['not-logged']]: !logged })}>
       {transition((style, item) =>
-        item && user !== undefined || null ? <animated.div style={style} className={styles.app}><App user={user} /></animated.div> : <Login onReceive={HandleLoginData} setLogingStatus={setLogingStatus} />
+        item && user !== undefined || null ? <animated.div style={style} className={styles.app}><App user={user} logout={HandleLogout} /></animated.div> : <Login onReceive={HandleLoginData} />
       )}
     </div>
   )

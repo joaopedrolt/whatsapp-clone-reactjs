@@ -9,7 +9,7 @@ import NewChat from './NewChat/index';
 
 import Api from 'src/api';
 
-function Sidebar({ user, setActiveChat, activeChat }) {
+function Sidebar({ user, setActiveChat, activeChat, logout }) {
   const [newChatMenu, setNewchatMenuStatus] = useState(false);
   const [inputSearchValue, setSearchValue] = useState('');
   const [chatList, setChatList] = useState([]);
@@ -23,8 +23,8 @@ function Sidebar({ user, setActiveChat, activeChat }) {
 
   return (
     <div className={styles.sidebar}>
-      <NewChat user={user} newChatMenu={newChatMenu} setNewchatMenuStatus={setNewchatMenuStatus} />
-      <Header user={user} setNewchatMenuStatus={setNewchatMenuStatus} />
+      <NewChat user={user} newChatMenu={newChatMenu} setNewchatMenuStatus={setNewchatMenuStatus} setActiveChat={setActiveChat}/>
+      <Header user={user} setNewchatMenuStatus={setNewchatMenuStatus} logout={logout} />
       <Search inputValue={inputSearchValue} setValue={setSearchValue} />
       <ChatList inputValue={inputSearchValue} chatList={chatList} setActiveChat={setActiveChat} activeChat={activeChat} />
     </div>

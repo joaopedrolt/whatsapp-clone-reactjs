@@ -67,8 +67,7 @@ function Footer({ user, activeChat, users }) {
     const HandleFormSubmit = (e) => {
         e.preventDefault();
         const file = e.target[0]?.files[0];
-        console.log(file);
-        Api.sendImageMessage(file, activeChat.chatId, user.id);
+        Api.sendImageMessage(file, activeChat.chatId, user.id, users);
     }
 
     const HandleInputImgChange = (e) => {

@@ -5,12 +5,12 @@ import Content from 'src/components/Content'
 import Intro from 'src/components/Content/Intro/index.jsx'
 import Chat from 'src/components/Content/Chat/index.jsx'
 
-function App({ user }) {
+function App({ user, logout}) {
   const [activeChat, setActiveChat] = useState({});
   
   return (
     <>
-      <Sidebar user={user} activeChat={activeChat} setActiveChat={setActiveChat} />
+      <Sidebar user={user} activeChat={activeChat} setActiveChat={setActiveChat} logout={logout}/>
       <Content>
         {activeChat.chatId === undefined &&
           <Intro />
