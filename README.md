@@ -23,4 +23,10 @@ Projeto que visa replicar a icônica interface de usuário do Whatsapp Web e sua
 * Firebase Auth
 * Facebook App Auth
 
+## Utilização
+
+<h4><a href="https://joaopedrolt.github.io/whatsapp-clone-reactjs/">Você pode acessar esse projeto clicando aqui</a></h3>
+
+
+
 
