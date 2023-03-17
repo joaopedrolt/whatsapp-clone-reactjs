@@ -30,12 +30,23 @@ Projeto que visa replicar a icônica interface de usuário do Whatsapp Web e sua
 
 #### Instalação Local
 
-* Clonar ou fazer download do projeto.
-* Instale as dependências do projeto
+1. Clonar ou fazer download do projeto.
+2. Instale as dependências do projeto
 ```bash
 npm install
 ```
-
+3. Crie um projeto no Firebase Console e habilite o Firebase Authentication, Firebase Database, Firebase Store.
+4. Copie as credenciais do Firebase e crie um arquivo chamado FirebaseConfig.js na pasta ./src seguindo os padrões do arquivo firebaseConfig.copy.js como exemplo. Adicione as credenciais no arquivo:
+```bash
+export default {
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: ""
+};
+```
 
 
 
