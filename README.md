@@ -36,7 +36,8 @@ Projeto que visa replicar a icônica interface de usuário do Whatsapp Web e sua
 npm install
 ```
 3. Crie um projeto no Firebase Console e habilite o Firebase Authentication, Firebase Database, Firebase Store.
-4. Copie as credenciais do Firebase e crie um arquivo chamado FirebaseConfig.js na pasta ./src seguindo os padrões do arquivo firebaseConfig.copy.js como exemplo. Adicione as credenciais no arquivo:
+4. Crie um App no Facebook Apps, habilite o produto Facebook Login e o configure como o Firebase Auth.
+5. Copie as credenciais do Firebase e crie um arquivo chamado FirebaseConfig.js na pasta ./src seguindo os padrões do arquivo firebaseConfig.copy.js como exemplo. Adicione as seguintes credenciais no arquivo FirebaseConfig.js:
 ```bash
 export default {
     apiKey: "",
@@ -47,6 +48,7 @@ export default {
     appId: ""
 };
 ```
-
-
-
+6. Inicie o projeto em modo desenvolvimento:
+```bash
+    npm run dev
+```
