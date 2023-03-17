@@ -6,5 +6,21 @@ Projeto que visa replicar a icônica interface de usuário do Whatsapp Web e sua
 
 ## Funcionalidades
 
-* [Login seguro com uma conta do Facebook]
-* [Enviar mensagens para contatos]
+* Login seguro com uma conta do Facebook
+* Iniciar conversas com contatos previamente logados
+* Enviar mensagens
+* Enviar imagens
+* Speech-to-Text (Google Chrome e Edge)
+* Pesquisar por conversas e contatos
+
+## Tecnologias Utilizadas
+
+* React
+* Vite
+* Sass
+* Firebase Store
+* Firebase Database
+* Firebase Auth
+* Facebook App Auth
+
+
