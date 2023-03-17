@@ -26,9 +26,4 @@ Projeto que visa replicar a icônica interface de usuário do Whatsapp Web e sua
 ## Utilização
 
 <h4><a href="https://joaopedrolt.github.io/whatsapp-clone-reactjs/">Você pode acessar esse projeto clicando aqui</a></h3>
-<h5>Obs: Possibilidade de haver delay ou indisponibilidade por conta do host</h5>
-
-
-
-
-
+<p>Obs: Possibilidade de haver delay ou indisponibilidade por conta do host</p>
