@@ -10,12 +10,12 @@ import Api from 'src/api';
 import classNames from 'classnames';
 
 function AppWindow() {
-  const [logged, setLogingStatus] = useState(false);
-  const [user, setUser] = useState(null/* {
+  const [logged, setLogingStatus] = useState(true);
+  const [user, setUser] = useState({
     id: '2n3oEYb4wPQQdztgbdJY',
     name: 'Test',
     avatar: 'https://www.w3schools.com/howto/img_avatar.png'
-  } */);
+  });
   const transition = useTransition(logged, {
     from: { opacity: 0, scale: 0 },
     enter: { opacity: 1, scale: 1 }

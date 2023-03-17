@@ -34,6 +34,10 @@ function Footer({ user, activeChat, users }) {
     }
 
     const HandleEmojiButtonClick = () => {
+
+        if (inputImgActive) {
+            setInputImgActiveStatus(false);
+        }
         setEmojiPickerStatus(true);
     }
 
@@ -42,6 +46,9 @@ function Footer({ user, activeChat, users }) {
     }
 
     const HandleClipButtonClick = () => {
+        if (emojiPickerActive) {
+            setEmojiPickerStatus(false);
+        }
         setInputImgActiveStatus(inputImgActive => !inputImgActive);
         if (!inputImgActive) {
             fileInputRef.current.focus();
@@ -114,7 +121,7 @@ function Footer({ user, activeChat, users }) {
                     <div className={classNames(styles['emoji-clip-buttons'], { [styles['active']]: emojiPickerActive })}>
                         <EmojiCloseButton className={styles['emojipicker-close-button']} onClick={HandleEmojiCloseButtonClick} />
                         <EmojiButton className={styles['emoji-button']} onClick={HandleEmojiButtonClick} />
-                        <ClipButton onClick={HandleClipButtonClick} className={styles['clip-button']} />
+                        <ClipButton onClick={HandleClipButtonClick} className={classNames(styles['clip-button'], { [styles.active]: inputImgActive })} />
                     </div>
                     <Input users={users} closeEmokiPicker={HandleEmojiCloseButtonClick} activeChat={activeChat} user={user} emoji={emoji} />
                 </div>

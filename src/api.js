@@ -108,7 +108,7 @@ export default {
                         }
                     });
 
-                    setChatList(data.chats);
+                    setChatList(chats);
                 }
             }
         });
@@ -140,7 +140,6 @@ export default {
     sendMessage: async (chatId, userId, body, users) => {
         if (body !== '') {
             let now = new Date();
-            console.log(body);
             const chatDoc = db.collection('chats').doc(chatId);
 
             await chatDoc.get().then(async (doc) => {

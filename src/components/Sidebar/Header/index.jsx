@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 import styles from './Header.module.scss'
 
@@ -9,15 +9,36 @@ import classNames from 'classnames';
 function Header({ setNewchatMenuStatus, user, logout }) {
     const [logoutMenu, setLogoutMenuStatus] = useState(false);
 
+    const menuRef = useRef(null);
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setLogoutMenuStatus(false);
+            }
+        }
+
+        if (logoutMenu) {
+            document.addEventListener('mousedown', handleClickOutside);
+        } else {
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [logoutMenu]);
+
     const HandleNewchatClick = () => {
         setNewchatMenuStatus(true);
     }
 
     const HandleLogoutMenuClick = () => {
         setLogoutMenuStatus(logoutMenu => !logoutMenu);
+        menuRef.current.focus();
     }
 
-    const HandleLogoutClick = () =>{
+    const HandleLogoutClick = () => {
         logout();
     }
 
@@ -34,7 +55,7 @@ function Header({ setNewchatMenuStatus, user, logout }) {
                 <div className={styles.icon} onClick={HandleNewchatClick}>
                     <ChatButton fill={'#54656f'} />
                 </div>
-                <div className={classNames(styles.icon, { [styles.active]: logoutMenu })} onClick={HandleLogoutMenuClick}>
+                <div ref={menuRef} className={classNames(styles.icon, { [styles.active]: logoutMenu })} onClick={HandleLogoutMenuClick}>
                     <MenuButton fill={'#54656f'} />
                 </div>
             </div>

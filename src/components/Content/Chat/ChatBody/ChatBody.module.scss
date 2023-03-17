@@ -41,11 +41,12 @@
 
                             .img {
                                 border-radius: 7.5px;
-                                max-height: 500px;
-                                max-width: 500px;
-                                object-fit: cover;    
+                                object-fit: cover;
                                 opacity: 0;
+                                max-height: 485px;
+                                max-width: 485px;
                                 transition: opacity 0.5s ease-in-out;
+
                             }
 
                             &::after {
@@ -56,6 +57,20 @@
                                 height: 30px;
                                 bottom: 0;
                                 background-image: linear-gradient(to top, rgba(11, 20, 26, .5), rgba(11, 20, 26, 0));
+                            }
+
+                            @media (max-width: $message-width-mid-adjust) {
+                                .img{
+                                    max-height: 350px;
+                                    max-width: 350px;
+                                }
+                            }
+
+                            @media (max-width: $small-desktop-display) {
+                                .img{
+                                    max-height: 300px;
+                                    max-width: 300px;
+                                }
                             }
                         }
 
@@ -155,6 +170,7 @@
                     background-color: hsla(0, 0%, 100%, 0.95);
                     box-shadow: 0 1px 0.5px rgba(11, 20, 26, .13);
                     border-radius: 7.5px;
+                    margin-top: 8px;
 
                     span {
                         font-size: 12.5px;

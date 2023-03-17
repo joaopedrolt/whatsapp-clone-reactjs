@@ -33,7 +33,7 @@ function ChatBody({ user, activeChat, setUsers }) {
                 hours = `${0}${hours}`
             }
             if (minutes < 10) {
-                minutes = `${minutes}${0}`
+                minutes = `${0}${minutes}`
             }
             return (`${hours}:${minutes}`);
         } else {

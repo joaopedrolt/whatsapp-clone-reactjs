@@ -1,0 +1,169 @@
+@import 'src/styles/theme';
+@import 'src/styles/animations';
+
+.chat-box {
+    height: 75px;
+    width: 100%;
+    background-color: $bg-sidebar;
+    display: flex;
+    cursor: pointer;
+    overflow-x: hidden;
+    min-width: 0;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    transition-property: color, background-color;
+    transition: opacity 0.5s ease;
+    opacity: 1;
+
+    .image {
+        padding: 0 15px 0 13px;
+        display: flex;
+        align-items: center;
+
+        img {
+            border-radius: 50%;
+            height: 50px;
+            width: 50px;
+        }
+
+        .loading {
+            animation: $skleton-animation;
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        border-bottom: $border-chatbox;
+        padding-right: 21px;
+        min-width: 0;
+
+        .top-row {
+            display: flex;
+            min-width: 0;
+
+            h3 {
+                font-size: 16px;
+                flex-grow: 1;
+                font-weight: 400;
+                color: $chatbox-title-color;
+            }
+
+            p {
+                margin-top: 3.1px;
+                font-size: 12px;
+                font-weight: 400;
+                color: $chatbox-datetime-color;
+            }
+        }
+
+        .bottom-row {
+            display: flex;
+            margin-top: 3px;
+            height: 22.39px;
+            min-width: 0;
+
+            span {
+                color: $chatbox-message-color;
+                font-weight: 400;
+                font-size: 14px;
+                flex-grow: 1;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+
+            .icons {
+                display: flex;
+                gap: 1.5px;
+                margin-left: 13px;
+                flex-shrink: 0;
+
+                .notifications {
+                    display: none;
+                    margin-right: 2px;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: $bg-unread-counter;
+                    padding: 0.3rem 0.55rem;
+                    border-radius: 1.1em;
+                    transition: margin-right 0.1s ease-in;
+                    margin-right: -20px;
+
+                    p {
+                        margin-bottom: 1.5px;
+                        margin-right: 0.6px;
+                        color: $unread-counter-color;
+                        font-size: 13px;
+                    }
+                }
+
+                .arrow-down-icon {
+                    position: relative;
+                    z-index: -1;
+                    opacity: 0;
+                    pointer-events: none;
+                    user-select: none;
+                    fill: $arrow-down-icon-color;
+                    transition: transform 0.1s ease-in, opacity 0.1s ease-in;
+                    transform: translateX(10px);
+                }
+            }
+        }
+
+        &.active {
+            .top-row {
+                h3 {
+                    font-weight: 500;
+                }
+
+                p {
+                    color: $chatbox-datetime-active-color;
+                    font-weight: 600;
+                }
+            }
+
+            .bottom-row {
+                span {
+                    color: $chatbox-message-active-color;
+                    font-weight: 500;
+                }
+
+                .icons .notifications {
+                    display: flex;
+                }
+            }
+        }
+    }
+
+    &.active {
+        background-color: $bg-chatbox-hover;
+    }
+
+    &:hover {
+        background-color: $bg-chatbox-hover;
+
+        .content {
+            .icons {
+                .notifications {
+                    margin-right: 0;
+                }
+
+                .arrow-down-icon {
+                    position: relative !important;
+                    z-index: 10;
+                    opacity: 1;
+                    pointer-events: all;
+                    user-select: auto;
+                    transform: translateX(0);
+                }
+            }
+        }
+    }
+
+    &.loading {
+        opacity: 0;
+    }
+}
