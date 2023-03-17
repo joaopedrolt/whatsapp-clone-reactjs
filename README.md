@@ -1,14 +1,14 @@
 <h2 align="center">Projeto Clone do Whatsapp Web</h2>
 
+## Índice
+
 * [Descrição](#Descrição)
 * [Tecnologias Utilizadas](#Tecnologias-Utilizadas)
-* [Supported Architectures](#supported-architectures)
-* [Choose How to Install](#choose-how-to-install)
-   * [Install Hugo as Your Site Generator (Binary Install)](#install-hugo-as-your-site-generator-binary-install)
-   * [Build and Install the Binary from Source (Using the Go toolchain)](#build-and-install-the-binary-from-source-using-the-go-toolchain)
-* [The Hugo Documentation](#the-hugo-documentation)
-* [Contributing to Hugo](#contributing-code-to-hugo)
-* [Dependencies](#dependencies)
+* [Funcionalidades](#Funcionalidades)
+* [Como Executar o Projeto](#Como-Executar-o-Projeto)
+   * [Instalação Local](#Instalação-Local)
+* [Autoria](#Autoria)
+* [Imagens do Projeto](#Imagens-do-Projeto)
 
 ## Descrição
 
