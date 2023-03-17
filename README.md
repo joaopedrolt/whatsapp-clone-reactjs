@@ -23,7 +23,19 @@ Projeto que visa replicar a icônica interface de usuário do Whatsapp Web e sua
 * Speech-to-Text (Google Chrome e Edge)
 * Pesquisar por conversas e contatos
 
-## Utilização
+## Como Executar o Projeto
 
 <h4><a href="https://joaopedrolt.github.io/whatsapp-clone-reactjs/">Você pode acessar esse projeto clicando aqui</a></h3>
-<p>Obs: Possibilidade de haver delay ou indisponibilidade por conta do host</p>
+<h5>Obs: Possibilidade de haver delay ou indisponibilidade por conta do host</h5>
+
+#### Instalação Local
+
+* Clonar ou fazer download do projeto.
+* Instale as dependências do projeto
+```bash
+npm install
+```
+
+
+
+
