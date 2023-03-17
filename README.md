@@ -1,5 +1,15 @@
 <h2 align="center">Projeto Clone do Whatsapp Web</h2>
 
+* [Descrição](#Descrição)
+* [Tecnologias Utilizadas](#Tecnologias-Utilizadas)
+* [Supported Architectures](#supported-architectures)
+* [Choose How to Install](#choose-how-to-install)
+   * [Install Hugo as Your Site Generator (Binary Install)](#install-hugo-as-your-site-generator-binary-install)
+   * [Build and Install the Binary from Source (Using the Go toolchain)](#build-and-install-the-binary-from-source-using-the-go-toolchain)
+* [The Hugo Documentation](#the-hugo-documentation)
+* [Contributing to Hugo](#contributing-code-to-hugo)
+* [Dependencies](#dependencies)
+
 ## Descrição
 
 Projeto que visa replicar a icônica interface de usuário do Whatsapp Web e suas funcionalidades, oferecendo uma experiência de uso semelhante à do software original, onde os usuários podem facilmente se conectar, enviar mensagens e conversar em tempo real.
@@ -58,6 +68,6 @@ Este projeto foi criado por mim, João Pedro Lima Teixeira, como uma iniciativa 
 
 ## Imagens do Projeto
 
-<div><img src="http://drive.google.com/uc?export=view&id=1_-wk_WGbZ9VpUxVT6bnGqq1oBjou6MnJ" width=600 alt="Imagem 2" /></div>
-
-<div><img src="http://drive.google.com/uc?export=view&id=1gAZwQO7MgemEPHs0jpV63xmKLLVlF0og" width=300 alt="Imagem 3" /></div>
+<div><img src="http://drive.google.com/uc?export=view&id=1w2RoarqaIuvTxtcBMmb_h4l8ecGlGHYD" width=600 alt="Login" /></div>
+<div><img src="http://drive.google.com/uc?export=view&id=13E-3pi79DVQLAAqtjKFJcgGYTH0hLd0_" width=600 alt="Main" /></div>
+<div><img src="http://drive.google.com/uc?export=view&id=1MTCX2HeLGcimkePnfVa_DIJ3qflKTlo_" width=600 alt="Chat" /></div>
