@@ -52,3 +52,12 @@ export default {
 ```bash
     npm run dev
 ```
+## Autoria
+
+Este projeto foi criado por mim, João Pedro Lima Teixeira, como uma iniciativa pessoal para desenvolver minhas habilidades em React e outras tecnologias envolvidas no projeto.
+
+## Imagens do Projeto
+
+<div><img src="http://drive.google.com/uc?export=view&id=1_-wk_WGbZ9VpUxVT6bnGqq1oBjou6MnJ" width=600 alt="Imagem 2" /></div>
+
+<div><img src="http://drive.google.com/uc?export=view&id=1gAZwQO7MgemEPHs0jpV63xmKLLVlF0og" width=300 alt="Imagem 3" /></div>
