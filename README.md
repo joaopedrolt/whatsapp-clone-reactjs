@@ -1,4 +1,4 @@
-<h2 align="center">Projeto Clone do Whatsapp Web</h2>
+<h2 align="center">Clone Whatsapp Web</h2>
 
 ## Índice
 
