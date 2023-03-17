@@ -2,13 +2,13 @@
 
 ## Índice
 
-* [Descrição](#Descrição)
-* [Tecnologias Utilizadas](#Tecnologias-Utilizadas)
-* [Funcionalidades](#Funcionalidades)
-* [Como Executar o Projeto](#Como-Executar-o-Projeto)
-   * [Instalação Local](#Instalação-Local)
-* [Autoria](#Autoria)
-* [Imagens do Projeto](#Imagens-do-Projeto)
+* [Descrição](#descrição)
+* [Tecnologias Utilizadas](#tecnologias-utilizadas)
+* [Funcionalidades](#funcionalidades)
+* [Como Executar o Projeto](#como-executar-o-projeto)
+   * [Instalação Local](#instalação-local)
+* [Autoria](#autoria)
+* [Imagens do Projeto](#imagens-do-projeto)
 
 ## Descrição
 
