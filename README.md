@@ -1,59 +1,36 @@
-Projeto Clone do Whatsapp Web
-Este é um projeto de clone do Whatsapp Web criado usando React, Vite, Sass, Firebase Store, Firebase Database, Firebase Auth e Facebook App Auth.
+<h2 align="center">Projeto Clone do Whatsapp Web</h2>
 
-Descrição
-O objetivo deste projeto é fornecer uma interface de usuário semelhante ao Whatsapp Web, permitindo que os usuários se conectem à sua conta do Whatsapp e enviem mensagens para seus contatos.
+<h3 align="center">Descrição</h3>
+ 
+O objetivo deste projeto é fornecer uma interface de usuário e experiência semelhante ao Whatsapp Web, permitindo que os usuários enviem mensagens e imagens em tempo real para seus contatos.
 
-Funcionalidades
-Login com conta do Whatsapp
-Enviar mensagens para contatos
-Ver mensagens recebidas e enviadas
-Enviar imagens e vídeos
-Enviar áudios
-Criar grupos de conversa
-Adicionar novos contatos
-Pesquisar por conversas e contatos
-Tecnologias Utilizadas
-React
-Vite
-Sass
-Firebase Store
-Firebase Database
-Firebase Auth
-Facebook App Auth
-Como Executar o Projeto
-Para executar o projeto, siga os seguintes passos:
+<h3 align="center">Informações</h3>
+ 
+- Nome do Projeto: Journey, agência de viagens.
+- Autoria: Código inspirado no canal Mr. Web Designer.
+- Proposito: Aperfeiçoamento em Sass e Animation on scroll (Aos).
+- Progresso: Completo e responsivo.
+- Tecnologias utilizadas: Html, Sass, Css e Javascript.
+- Requisitos: Qualquer navegador.
 
-Clone o repositório para o seu computador:
+<h3 align="center">Utilização</h3>
 
-bash
-Copy code
-git clone https://github.com/seu-usuario/whatsapp-clone.git
-Instale as dependências do projeto:
+<h4 align="center"><a href="https://joaopedrolt.github.io/journey-frontend/">Você pode acessar esse projeto clicando aqui</a></h3>
+<h5 align="center">Obs: Possibilidade de haver delay ou indisponibilidade por conta do host</h5>
 
-Copy code
-npm install
-Crie um arquivo .env na raiz do projeto e preencha com as informações necessárias para as credenciais do Firebase e do Facebook App. Veja um exemplo abaixo:
+- Navegue pelas funcionalidades da página.
 
-makefile
-Copy code
-REACT_APP_API_KEY=your_firebase_api_key
-REACT_APP_AUTH_DOMAIN=your_firebase_auth_domain
-REACT_APP_PROJECT_ID=your_firebase_project_id
-REACT_APP_STORAGE_BUCKET=your_firebase_storage_bucket
-REACT_APP_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
-REACT_APP_APP_ID=your_firebase_app_id
-REACT_APP_FACEBOOK_APP_ID=your_facebook_app_id
-Execute o projeto:
+<h3 align="center">Instalação Local</h3>
 
-sql
-Copy code
-npm start
-Contribuindo
-Sinta-se à vontade para contribuir com este projeto enviando pull requests e relatórios de problemas.
+- Clonar ou fazer download do projeto.
+- Abrir o arquivo "index.html" em seu navegador de preferência.
 
-Licença
-Este projeto é licenciado sob a Licença MIT. Consulte o arquivo LICENSE para obter mais informações.
+<h3 align="center">Imagens do Software</h3>
 
-Autoria
-Este projeto foi criado por mim, [Seu Nome], como uma iniciativa pessoal para desenvolver minhas habilidades em React e outras tecnologias envolvidas no projeto.
+<h5 align="center">Obs: Caso a imagem não carregar clique no texto gerado para abri-la em uma guia do navegador ou recarregue a página do repositório</h5>
+
+<div align="center"><img src="http://drive.google.com/uc?export=view&id=120-4Mj7gVaWGsOnJVTaEa_1j2LMCD-ez" width=600 alt="Imagem 1" /></div>
+
+<div align="center"><img src="http://drive.google.com/uc?export=view&id=1_-wk_WGbZ9VpUxVT6bnGqq1oBjou6MnJ" width=600 alt="Imagem 2" /></div>
+
+<div align="center"><img src="http://drive.google.com/uc?export=view&id=1gAZwQO7MgemEPHs0jpV63xmKLLVlF0og" width=300 alt="Imagem 3" /></div>
