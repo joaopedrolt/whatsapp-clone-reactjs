@@ -58,9 +58,11 @@
                     text-transform: uppercase;
                 }
 
-                .facebook-container {
+                .facebook-container,
+                .google-container {
                     display: flex;
                     align-items: center;
+                    justify-content: center;
                     gap: 6.5px;
                     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
                     padding: 15px 45px;
@@ -76,11 +78,37 @@
 
                     &:hover {
                         transform: scale(1.05);
-                        background-color: $bg-facebook-icon;
                         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                    }
+                }
+
+                .facebook-container {
+                    &:hover {
+                        background-color: $bg-facebook-icon;
 
                         svg {
-                            fill: $bg-facebook-hover;
+                            fill: $bg-icon-hover;
+                        }
+                    }
+                }
+
+                .google-container {
+                    margin-bottom: 10px;
+                    padding: 14px 45px 10px !important;
+
+                    svg {
+                        path{
+                            transition: fill 0.26s ease-in-out;
+                        }
+                    }
+
+                    &:hover {
+                        background-color: $bg-google-icon;
+
+                        svg {
+                            path{
+                                fill: $bg-icon-hover;
+                            }
                         }
                     }
                 }
@@ -98,7 +126,7 @@
         }
     }
 
-    &.loaded{
+    &.loaded {
         opacity: 1;
         transform: scale(1);
     }

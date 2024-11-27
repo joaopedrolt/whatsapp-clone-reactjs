@@ -12,8 +12,13 @@ const db = firebaseApp.firestore();
 const storage = firebase.storage();
 
 export default {
-    fbPopup: async () => {
+    fbRedirect: async () => {
         const provider = new firebase.auth.FacebookAuthProvider();
+        let result = await firebaseApp.auth().signInWithPopup(provider);
+        return { user: result.user, accessToken: result.credential.accessToken };
+    },
+    googleRedirect: async () => {
+        const provider = new firebase.auth.GoogleAuthProvider();
         let result = await firebaseApp.auth().signInWithPopup(provider);
         return { user: result.user, accessToken: result.credential.accessToken };
     },
